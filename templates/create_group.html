@@ -12,6 +12,7 @@
       </div>
       <div id="main">
         <form action="{{ url_for('create_group.create_group_form') }}" method="post">
+            <p class="" id="alert_message">{{alert_message}}</p>
           <label for="group_name">グループ名</label>
           <input type="text" name="group_name" id="group_name" />
           <input id="create_group_button" name="create_group" type="submit" value="作成する">
