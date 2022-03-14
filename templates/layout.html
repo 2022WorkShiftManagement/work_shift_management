@@ -15,10 +15,10 @@
 </head>
 <body>
 <header>
-    <a href="#">＜</a>
-    <h2>
-        {% block header %}
-    </h2>
+    {% block header %}
+        <a href="#">＜</a>
+        <h2></h2>
+    {% endblock %}
 </header>
 {% block main %}
 {% endblock %}
