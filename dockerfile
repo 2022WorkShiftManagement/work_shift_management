@@ -15,6 +15,7 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
 RUN python -m pip install flask
+RUN python -m pip install mysql
 COPY . .
 
 CMD [ "flask", "run", "--host=0.0.0.0", "--debugger", "--reload" ]

@@ -1,5 +1,5 @@
 set -e
-psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}<< EOSQL
+mysql -U ${MYSQL_USER} -d ${MYSQL_DB}<< EOSQL
 
 CREATE DATABASE work_shift_management;
 

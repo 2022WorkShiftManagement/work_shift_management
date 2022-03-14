@@ -15,7 +15,7 @@ services:
     command: flask run --host=0.0.0.0 --debugger --reload
   
   db:
-    build: ./postgres
+    build: ./datebase
     env_file:
       - .env
     ports:
