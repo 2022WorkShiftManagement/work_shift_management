@@ -1,3 +1,119 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    background-color: #FF9100;
+    justify-content: center;
+    align-items: center;
+}
+
+body > div {
+    width: 100%;
+}
+
 h1 {
-   text-align: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+form {
+    width: 90%;
+    margin: auto;
+}
+
+form ul {
+    list-style: none;
+}
+
+form label,
+form input {
+    font-size: 120%;
+    display: block;
+    width: 100%;
+}
+
+.input_text {
+    position: relative;
+    margin: 60px 3%;
+}
+
+.input_text input {
+    color: #FFFFFF;
+    box-sizing: border-box;
+    width: 100%;
+    letter-spacing: 1px;
+    padding-left: 4em;
+}
+
+.input_text input:focus {
+    outline: none;
+}
+
+.ef {
+    padding: 4px 0;
+    border: none;
+    background-color: transparent;
+}
+
+.ef ~ .focus_line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: 0.4s;
+    background-color: #1b2538;
+}
+
+.ef:focus ~ .focus_line,
+.input_text.ef ~ .focus_line {
+    width: 100%;
+    background-color: #FFFFFF;
+    transition: 0.4s;
+}
+
+.ef ~ label {
+    position: absolute;
+    z-index: -1;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+.ef:focus ~ label, .input_text.ef ~ label {
+    font-size: 100%;
+    top: -16px;
+    transition: 0.3s;
+    color: #FFFFFF;
+}
+
+form input[type="submit"] {
+    -webkit-appearance: none;
+    color: #FFFFFF;
+    background-color: #303030;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 100vh;
+    border: none;
+}
+
+form > div {
+    position: absolute;
+    width: 90vw;
+    bottom: 10vh;
+    text-align: center;
+}
+
+a {
+    color: #FFFFFF;
 }
