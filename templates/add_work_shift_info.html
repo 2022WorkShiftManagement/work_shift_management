@@ -1,18 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>アカウント作成</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/add_work_shift_info.css')}}">
-</head>
-<body>
-<header>
-    <a href="{{url_for('index')}}">＜</a>
-    <h2>バイト先情報登録</h2>
-</header>
+{% extends "layout.html" %}
+
+{% block title %}
+バイト先情報登録【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/add_work_shift_info.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="#"></a>
+{% endblock %}
+
+{% block header %}
+<h2>バイト先情報登録</h2>
+{% endblock %}
+
+{% block main %}
 <main>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
     <form action="" method="post">
@@ -35,7 +39,6 @@
                 <div class="input_text">
                     <div class="select_color">
                         <div id="color_box"></div>
-
                         <select id="color" class="ef">
                             <option value="#FF0000">赤</option>
                             <option value="#FF3399">ピンク</option>
@@ -59,6 +62,8 @@
         </div>
     </form>
 </main>
+{% endblock %}
+{% block js %}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const color_box = document.getElementById('color_box');
@@ -71,5 +76,6 @@
         });
     });
 </script>
+{% endblock %}
 </body>
 </html>
