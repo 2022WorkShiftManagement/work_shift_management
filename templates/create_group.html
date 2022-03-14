@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <div id="container">
-      <div id="header">
-        <button type="button">＜</button>
-        <h2>グループ新規作成</h2>
-      </div>
-      <div id="main">
-        <form action="{{ url_for('create_group.create_group_form') }}" method="post">
-            <p class="" id="alert_message">{{alert_message}}</p>
-          <label for="group_name">グループ名</label>
-          <input type="text" name="group_name" id="group_name" />
-          <input id="create_group_button" name="create_group" type="submit" value="作成する">
-        </form>
-      </div>
-    </div>
-    <script type="text/javascript" src="{{url_for('static', filename='js/create_group.js')}}"></script>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}
+    グループ作成｜Jyobi-Calendar
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_group.css') }}">
+{% endblock %}
+
+{% block back_page %}
+    <a href="#" onclick="window.history.back(); return false;">＜</a>
+{% endblock %}
+
+{% block header %}
+    グループ作成
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('group.create_group_form') }}" method="post">
+        <ul>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" name="group_name" id="group_name">
+                    <label for="name">グループ名</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="作成">
+        </div>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/create_group.js') }}"></script>
+{% endblock %}

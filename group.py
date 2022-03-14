@@ -1,13 +1,13 @@
 import random
 import string
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, redirect
 
 from connect_db import connect_db
 
-create_group = Blueprint('create_group', __name__, url_prefix='/create-group')
+group = Blueprint('group', __name__, url_prefix='/group')
 
 
-@create_group.route("/", methods=['GET', 'POST'])
+@group.route("/newGroup", methods=['GET', 'POST'])
 def create_group_form():
     # if "user_id" not in session:  # セッションの有無
     # return redirect("/")
@@ -21,9 +21,17 @@ def create_group_form():
             random_string = randomstring(16)
             conn = connect_db()
             cur = conn.cursor()
+            # グループの作成
             sql = "INSERT INTO usergroups(user_id, group_name, group_string) VALUES(%s,%s,%s)"
+            # グループへの参加
+            sql2 = '''INSERT INTO joininggroups(user_id, group_id)
+                        VALUES (%s,
+                            (SELECT group_id FROM usergroups
+                            WHERE group_string = %s
+                        ));'''
             try:
                 cur.execute(sql, (1, group_name, random_string))
+                cur.execute(sql2, (1, random_string))
                 conn.commit()
             except Exception as e:
                 message = "作成出来ませんでした。"

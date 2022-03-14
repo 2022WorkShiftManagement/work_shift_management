@@ -3,12 +3,12 @@ from datetime import timedelta
 import os
 from flask import Flask, Blueprint, render_template
 
-from create_group import create_group
+from group import group
 
 app = Flask(__name__)
 
 # グループ作成
-app.register_blueprint(create_group)
+app.register_blueprint(group)
 
 @app.route("/")
 def index():
