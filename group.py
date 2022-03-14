@@ -1,6 +1,6 @@
 import random
 import string
-from flask import Blueprint, render_template, request, session, redirect
+from flask import Blueprint, render_template, request, session, redirect, url_for
 
 from connect_db import connect_db
 
@@ -38,11 +38,35 @@ def create_group_form():
                 return render_template('create_group.html', alert_message=message)
             cur.close()
             conn.close()
-            return render_template('', )
+            return redirect(url_for('group.group_detail', gid=random_string))
 
     else:
         return render_template("create_group.html")
 
+
+
+@group.route('/detail/<string:gid>', methods=["POST", "GET"])
+def group_detail(gid):
+    # if "user_id" not in session:  # セッションの有無
+    # return redirect("/")
+    print('group_ID:' + gid)
+
+    sql = '''SELECT jg.user_id, user_name, jg.group_id, ug.user_id as group_reader, group_name, group_string FROM joininggroups as jg
+        INNER JOIN users as us ON us.user_id = jg.user_id
+        INNER JOIN usergroups as ug ON ug.group_id = jg.group_id
+        WHERE us.delete_flg=0 AND ug.group_string=%s'''
+
+    try:
+        conn = connect_db()
+        cur = conn.cursor()
+        cur.execute(sql, (gid,))
+        group_details = cur.fetchall()
+        print(group_details)
+        cur.close()
+        conn.close()
+        return render_template('group_detail.html', details=group_details)
+    except Exception as e:
+        return render_template('group_detail.html', alert_message="グループが無いよ")
 
 def randomstring(n):
     random_string = [random.choice(string.ascii_letters + string.digits) for i in range(n)]

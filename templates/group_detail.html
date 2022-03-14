@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    グループ詳細｜Jyobi-Calendar
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block back_page %}
+
+{% endblock %}
+
+{% block header %}
+    <span class="group_title">グループ名</span>{{ details[0][4] }}
+{% endblock %}
+
+{% block main %}
+    <div id="group_link">
+        <div class="input_text">
+            <input class="ef" id="group_link_text" type="text" value="{{ details[0][4] }}" readonly>
+            <label>参加URL</label>
+            <button id="group_link_text_copy" onclick="copyToClipboard()">Copy</button>
+        </div>
+        <div id="group_link_qr">
+            <p>参加QR</p>
+            <div id="group_link_qr_img"></div>
+        </div>
+    </div>
+    <div id="member_list">
+        <p>参加メンバー</p>
+        <table>
+            {% for i in details %}
+                {% if i[0] == 1 %}
+                    <tr>
+                        <td>
+                            {{ i[1] }}
+                        </td>
+                        <td>
+                            {% if i[0] == i[3] %}
+                                リーダー
+                            {% else %}
+                                メンバー
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            {% for i in details %}
+                {% if i[0] != 1 %}
+                        <td>
+                            {{ i[1] }}
+                        </td>
+                        <td>
+                            {% if i[0] == i[3] %}
+                                リーダー
+                            {% else %}
+                                メンバー
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="{{ url_for('static', filename='js/group_detail.js') }}"></script>
+{% endblock %}
