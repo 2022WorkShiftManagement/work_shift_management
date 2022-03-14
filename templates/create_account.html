@@ -41,8 +41,8 @@
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="password" name="re_pw" id="re-pw">
-                    <label for="re-pw">RePW</label>
+                    <input class="ef" type="password" name="re_pw" id="re_pw">
+                    <label for="re_pw">RePW</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
@@ -53,21 +53,20 @@
     </form>
 </main>
 
-<!--<script>-->
-<!--    document.addEventListener("DomContentLoaded", () => {-->
-<!--        function checkPw() {-->
-<!--            const pw = document.getElementById('pw');-->
-<!--            const re_pw = document.getElementById('re_pw');-->
+<script>
+    // パスワードの確認
+    function checkPw() {
+        const pw = document.getElementById('pw');
+        const re_pw = document.getElementById('re_pw');
 
-<!--            if (pw !== re_pw) {-->
-<!--                const error = document.getElementById('error');-->
-<!--                error.textContent = 'パスワードが等しくないよっ！！！！' ;-->
-<!--                return false;-->
-<!--            }-->
+        if (pw.value !== re_pw.value) {
+            const error = document.getElementById('error');
+            error.textContent = 'パスワードが等しくありません。' ;
+            return false;
+        }
 
-<!--            return true;-->
-<!--        }-->
-<!--    })-->
-<!--</script>-->
+        return true;
+    }
+</script>
 </body>
 </html>
