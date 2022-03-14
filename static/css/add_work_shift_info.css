@@ -59,7 +59,8 @@ main form input {
     box-sizing: border-box;
     width: 100%;
     letter-spacing: 1px;
-    padding-left: 6em;
+    padding-left: 7em;
+    text-align: center;
 }
 
 .input_text input:focus,
@@ -71,14 +72,15 @@ main form input {
 .input_text select {
     font-size: 120%;
     width: 100%;
-    padding-left: 3em;
+    text-align: center;
 }
 
 #color_box {
+    position: relative;
     width: 20px;
     height: 20px;
     margin-top: 4px;
-    margin-left: 6em;
+    left: 6em;
 }
 
 .ef {

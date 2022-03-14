@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block back_page %}
-<a href="#"></a>
+<a href="#">＜</a>
 {% endblock %}
 
 {% block header %}
@@ -19,7 +19,7 @@
 {% block main %}
 <main>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
-    <form action="" method="post">
+    <form action="{{url_for('add_work_shift_info.confirm_work_shift_info_page')}}" method="post">
         <ul>
             <li>
                 <div class="input_text">
@@ -30,8 +30,8 @@
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="salary_date" id="salary_date">
-                    <label for="salary_date">SalaryDate</label>
+                    <select name="salary_day" id="salary_day" class="ef"></select>
+                    <label for="salary_day">SalaryDate</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
@@ -39,7 +39,7 @@
                 <div class="input_text">
                     <div class="select_color">
                         <div id="color_box"></div>
-                        <select id="color" class="ef">
+                        <select name="color" id="color" class="ef">
                             <option value="#FF0000">赤</option>
                             <option value="#FF3399">ピンク</option>
                             <option value="#FF9100">オレンジ</option>
@@ -51,10 +51,11 @@
                             <option value="#5F4894">紫</option>
                             <option value="#717375">グレー</option>
                         </select>
-                        <label for="job_name">Color</label>
+                        <label for="color">Color</label>
                         <span class="focus_line"></span>
                     </div>
                 </div>
+                <p></p>
             </li>
         </ul>
         <div>
@@ -66,6 +67,14 @@
 {% block js %}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const salary_day = document.getElementById('salary_day');
+        for (let i = 1; i < 30; i++) {
+            const option_day = document.createElement('option');
+            option_day.value = i !== 29 ? i.toString() : "last";
+            option_day.textContent = i !== 29 ? i.toString() + "日" : "月末";
+            salary_day.appendChild(option_day);
+        }
+
         const color_box = document.getElementById('color_box');
         const color = document.getElementById('color');
 
@@ -77,5 +86,3 @@
     });
 </script>
 {% endblock %}
-</body>
-</html>
