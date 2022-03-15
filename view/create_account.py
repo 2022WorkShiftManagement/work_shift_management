@@ -18,13 +18,15 @@ def confirm_account_page():
     name = request.form.get("name")
     pw = request.form.get("pw")
 
-    session['account'] = {
-        'mail': mail,
-        'name': name,
-        'pw': pw,
-    }
+    if mail and name and pw:
+        session['account'] = {
+            'mail': mail,
+            'name': name,
+            'pw': pw,
+        }
+        return render_template('confirm_account.html', mail=mail, name=name)
 
-    return render_template('confirm_account.html', mail=mail, name=name)
+    return render_template('test.html')
 
 
 @create_account.route("/insert_account")

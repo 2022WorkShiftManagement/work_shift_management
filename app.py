@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 from view.create_account import create_account
+from view.login import login
+import os
 
 app = Flask(__name__)
 
@@ -14,6 +16,9 @@ def index():
 
 # アカウント作成ページ
 app.register_blueprint(create_account)
+# ログインページ
+app.register_blueprint(login)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
