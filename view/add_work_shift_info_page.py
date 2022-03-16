@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from db import add_work_shift_info_db
+from work_shift_management.db import add_work_shift_info_db
 
 add_work_shift_info = Blueprint('add_work_shift_info', __name__)
 
@@ -61,7 +61,7 @@ def insert_work_shift_info():
         # データベースに登録できたか
         if insert_result:
             return redirect("/home")
-    
+
         return redirect(
             url_for(
                 'add_work_shift_info.add_work_shift_info_page',
