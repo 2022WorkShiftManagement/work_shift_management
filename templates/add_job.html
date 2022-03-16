@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/add_work_shift_info.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/add_job.css')}}">
 {% endblock %}
 
 {% block back_page %}
@@ -19,7 +19,7 @@
 {% block main %}
 <main>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
-    <form action="{{url_for('add_work_shift_info.confirm_work_shift_info_page')}}" method="post">
+    <form action="{{url_for('add_job.confirm_job_page')}}" method="post">
         <ul>
             <li>
                 <div class="input_text">

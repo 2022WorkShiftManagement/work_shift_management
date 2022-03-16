@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/confirm_work_shift_info.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/confirm_job.css')}}">
 {% endblock %}
 
 {% block back_page %}
-<a href="{{url_for('add_work_shift_info.add_work_shift_info_page')}}">＜</a>
+<a href="{{url_for('add_job.add_job_page')}}">＜</a>
 {% endblock %}
 
 {% block main %}
@@ -26,7 +26,7 @@
             </div>
         </dd>
     </dl>
-    <div><a href="{{url_for('add_work_shift_info.insert_work_shift_info')}}">作成する</a></div>
+    <div><a href="{{url_for('add_job.insert_job')}}">作成する</a></div>
 </main>
 <script>
     document.addEventListener('DOMContentLoaded', () => {

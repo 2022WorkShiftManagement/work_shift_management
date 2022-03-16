@@ -3,7 +3,7 @@ from datetime import timedelta
 import os
 from flask import Flask, Blueprint, render_template
 
-from view.add_work_shift_info_page import add_work_shift_info
+from view.add_job import add_job
 
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def index():
     return render_template('index.html')
 
 
-app.register_blueprint(add_work_shift_info)
+app.register_blueprint(add_job)
 
 
 if __name__ == "__main__":

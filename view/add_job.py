@@ -1,26 +1,27 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from work_shift_management.db import add_work_shift_info_db
+from work_shift_management.db import add_job_db
 
-add_work_shift_info = Blueprint('add_work_shift_info', __name__)
+add_job = Blueprint('add_job', __name__)
 
 
 # バイト先情報登録画面
-@add_work_shift_info.route("/add_work_shift_info")
-def add_work_shift_info_page():
+@add_job.route("/add_job")
+def add_job_page():
+    session['user'] = 1
     if "user" not in session:
         return redirect("/")
     else:
         error = request.args.get('error')
         return render_template(
-            'add_work_shift_info.html',
+            'add_job.html',
             color=get_color(),
             error=error
         )
 
 
 # バイト先情報登録確認画面
-@add_work_shift_info.route("/confirm_work_shift_info", methods=["POST"])
-def confirm_work_shift_info_page():
+@add_job.route("/confirm_job", methods=["POST"])
+def confirm_job_page():
     if "user" not in session:
         return redirect("/")
     else:
@@ -35,24 +36,24 @@ def confirm_work_shift_info_page():
                 'color_name': get_color(job_color)
             }
 
-            return render_template('confirm_work_shift_info.html')
+            return render_template('confirm_job.html')
 
         # 入力に不備があったら入力画面へリダイレクト
         return redirect(
             url_for(
-                'add_work_shift_info.add_work_shift_info_page',
+                'add_job.add_job_info_page',
                 error='入力内容に不備があります。'
             )
         )
 
 
 # バイト先情報登録
-@add_work_shift_info.route("/insert_work_shift_info")
-def insert_work_shift_info():
+@add_job.route("/insert_job")
+def insert_job():
     if "user" not in session:
         return redirect("/")
     else:
-        insert_result = add_work_shift_info_db.insert_work_shift_info(
+        insert_result = add_job_db.insert_work_shift_info(
             session['user'],
             session['job']['name'],
             session['job']['color_code']
@@ -64,14 +65,14 @@ def insert_work_shift_info():
 
         return redirect(
             url_for(
-                'add_work_shift_info.add_work_shift_info_page',
+                'add_job.add_job_info_page',
                 error='登録に失敗しました。'
             )
         )
 
 
 # シフト表示画面（仮）
-@add_work_shift_info.route("/home")
+@add_job.route("/home")
 def home():
     return "test"
 
