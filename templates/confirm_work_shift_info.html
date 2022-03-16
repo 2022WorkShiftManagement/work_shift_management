@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+バイト先情報登録【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/confirm_work_shift_info.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="{{url_for('add_work_shift_info.add_work_shift_info_page')}}">＜</a>
+{% endblock %}
+
+{% block main %}
+<main>
+    <p></p>
+    <dl>
+        <dt>JobName</dt>
+        <dd>{{ session['job']['name'] }}</dd>
+        <dt>Color</dt>
+        <dd>
+            <div class="select_color">
+                <div id="color_box"></div>
+                <p>{{ session['job']['color_name'] }}</p>
+            </div>
+        </dd>
+    </dl>
+    <div><a href="#">作成する</a></div>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const color_box = document.getElementById('color_box');
+        color_box.style.backgroundColor = {{ session['job']['color_code'] | tojson }};
+    })
+</script>
+{% endblock %}

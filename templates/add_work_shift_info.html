@@ -30,32 +30,17 @@
             </li>
             <li>
                 <div class="input_text">
-                    <select name="salary_day" id="salary_day" class="ef"></select>
-                    <label for="salary_day">SalaryDate</label>
-                    <span class="focus_line"></span>
-                </div>
-            </li>
-            <li>
-                <div class="input_text">
                     <div class="select_color">
                         <div id="color_box"></div>
                         <select name="color" id="color" class="ef">
-                            <option value="#FF0000">赤</option>
-                            <option value="#FF3399">ピンク</option>
-                            <option value="#FF9100">オレンジ</option>
-                            <option value="#FFD400">黄色</option>
-                            <option value="#008000">緑</option>
-                            <option value="#B2D235">黄緑</option>
-                            <option value="#67A7CC">水色</option>
-                            <option value="#0067C0">青</option>
-                            <option value="#5F4894">紫</option>
-                            <option value="#717375">グレー</option>
+                            {% for color_code in color %}
+                            <option value="{{color_code}}">{{color[color_code]}}</option>
+                            {% endfor %}
                         </select>
                         <label for="color">Color</label>
                         <span class="focus_line"></span>
                     </div>
                 </div>
-                <p></p>
             </li>
         </ul>
         <div>
@@ -63,18 +48,8 @@
         </div>
     </form>
 </main>
-{% endblock %}
-{% block js %}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const salary_day = document.getElementById('salary_day');
-        for (let i = 1; i < 30; i++) {
-            const option_day = document.createElement('option');
-            option_day.value = i !== 29 ? i.toString() : "last";
-            option_day.textContent = i !== 29 ? i.toString() + "日" : "月末";
-            salary_day.appendChild(option_day);
-        }
-
         const color_box = document.getElementById('color_box');
         const color = document.getElementById('color');
 
@@ -86,3 +61,4 @@
     });
 </script>
 {% endblock %}
+

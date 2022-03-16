@@ -79,3 +79,13 @@ main > div {
     align-items: center;
     bottom: 10vh;
 }
+
+#color_box {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+.select_color {
+    display: flex;
+}
