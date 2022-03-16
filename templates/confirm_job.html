@@ -28,10 +28,14 @@
     </dl>
     <div><a href="{{url_for('add_job.insert_job')}}">作成する</a></div>
 </main>
+{% endblock %}
+
+{% block js %}
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const color_box = document.getElementById('color_box');
-        color_box.style.backgroundColor = "#" + {{ session['job']['color_code'] | tojson }};
-    })
+document.addEventListener('DOMContentLoaded', () => {
+    const color_box = document.getElementById('color_box');
+    color_box.style.backgroundColor = "#" + {{ session['job']['color_code'] | tojson }};
+})
 </script>
 {% endblock %}
+
