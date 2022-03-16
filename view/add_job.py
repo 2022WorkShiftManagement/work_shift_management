@@ -11,6 +11,11 @@ def add_job_page():
     if "user" not in session:
         return redirect("/")
     else:
+        session['job'] = {
+            'name': None,
+            'color_code': None,
+            'color_name': None
+        }
         error = request.args.get('error')
         return render_template(
             'add_job.html',
@@ -41,7 +46,7 @@ def confirm_job_page():
         # 入力に不備があったら入力画面へリダイレクト
         return redirect(
             url_for(
-                'add_job.add_job_info_page',
+                'add_job.add_job_page',
                 error='入力内容に不備があります。'
             )
         )
@@ -65,7 +70,7 @@ def insert_job():
 
         return redirect(
             url_for(
-                'add_job.add_job_info_page',
+                'add_job.add_job_page',
                 error='登録に失敗しました。'
             )
         )
