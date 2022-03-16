@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from view.create_account import create_account
 from view.login import login
 import os
@@ -11,6 +11,7 @@ app.secret_key = 'hogehoge'
 
 @app.route("/")
 def index():
+    session.pop('account', None)
     return render_template('index.html')
 
 
