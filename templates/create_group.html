@@ -17,20 +17,22 @@
 {% endblock %}
 
 {% block main %}
-    <form action="{{ url_for('group.create_group_form') }}" method="post">
-        <ul>
-            <li>
-                <div class="input_text">
-                    <input class="ef" type="text" name="group_name" id="group_name">
-                    <label for="name">グループ名</label>
-                    <span class="focus_line"></span>
-                </div>
-            </li>
-        </ul>
-        <div>
-            <input type="submit" value="作成">
-        </div>
-    </form>
+    <main>
+        <form action="{{ url_for('group.create_group_form') }}" method="post" autocomplete="off">
+            <ul>
+                <li>
+                    <div class="input_text">
+                        <input class="ef" type="text" name="group_name" id="group_name" placeholder=" " required>
+                        <label for="name">GroupName</label>
+                        <span class="focus_line"></span>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <input type="submit" value="作成">
+            </div>
+        </form>
+    </main>
 {% endblock %}
 
 {% block js %}
