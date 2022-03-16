@@ -26,12 +26,12 @@
             </div>
         </dd>
     </dl>
-    <div><a href="#">作成する</a></div>
+    <div><a href="{{url_for('add_work_shift_info.insert_work_shift_info')}}">作成する</a></div>
 </main>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const color_box = document.getElementById('color_box');
-        color_box.style.backgroundColor = {{ session['job']['color_code'] | tojson }};
+        color_box.style.backgroundColor = "#" + {{ session['job']['color_code'] | tojson }};
     })
 </script>
 {% endblock %}

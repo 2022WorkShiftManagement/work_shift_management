@@ -2,19 +2,20 @@ import MySQLdb
 import os
 
 
+# バイト先情報を登録
 def insert_work_shift_info(user_id, job_name, color):
     conn = get_update_connection()
     cur = conn.cursor()
 
-    sql = "INSERT INTO jobInfos(user_id, job_name, color_code) VALUES(%s, %s, %s)"
+    sql = "INSERT INTO job_infos(user_id, job_name, color_code) VALUES(%s, %s, %s)"
 
     try:
-        cur.execute(sql, (user_id, job_name, color))
+        cur.execute(sql, (user_id, job_name, int(color, 16)))
     except Exception as e:
         return False
 
     cur.close()
-    cur.commit()
+    conn.commit()
     conn.close()
 
     return True

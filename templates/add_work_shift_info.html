@@ -48,17 +48,5 @@
         </div>
     </form>
 </main>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const color_box = document.getElementById('color_box');
-        const color = document.getElementById('color');
-
-        color_box.style.backgroundColor = color.value;
-
-        color.addEventListener('change', () => {
-            color_box.style.backgroundColor = color.value;
-        });
-    });
-</script>
 {% endblock %}
 
