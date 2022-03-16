@@ -26,7 +26,7 @@ def confirm_account_page():
         }
         return render_template('confirm_account.html', mail=mail, name=name)
 
-    return render_template('test.html')
+    return redirect("/create_account")
 
 
 @create_account.route("/insert_account")
