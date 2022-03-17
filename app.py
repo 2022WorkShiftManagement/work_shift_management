@@ -1,9 +1,6 @@
-from datetime import timedelta
+from flask import Flask, render_template
 
-import os
-from flask import Flask, Blueprint, render_template
-
-from group import group
+from view.group import group
 
 app = Flask(__name__)
 
