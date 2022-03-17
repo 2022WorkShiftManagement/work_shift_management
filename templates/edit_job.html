@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+バイト先情報編集【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/edit_job.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="#">＜</a>
+{% endblock %}
+
+{% block header %}
+<h2>バイト先情報編集</h2>
+{% endblock %}
+
+{% block main %}
+<main>
+    <p id="error">{% if error %}{{error}}{% endif %}</p>
+    <form action="" method="post">
+        <ul>
+            <li>
+                <div class="input_text">
+                    <div class="select_color">
+                        <select name="edit_job" id="edit_job" class="ef">
+                            {% for edit_job in job %}
+                            <option value="{{edit_job}}">{{edit_job}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="edit_job">EditJob</label>
+                        <span class="focus_line"></span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" name="job_name" id="job_name">
+                    <label for="job_name">JobName</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <div class="select_color">
+                        <div id="color_box"></div>
+                        <select name="color" id="color" class="ef">
+                            {% for color_code in color %}
+                            <option value="{{color_code}}">{{color[color_code]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="color">Color</label>
+                        <span class="focus_line"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="次へ">
+        </div>
+    </form>
+</main>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const color_box = document.getElementById('color_box');
+        const color = document.getElementById('color');
+
+        color_box.style.backgroundColor = "#" + color.value;
+
+        color.addEventListener('change', () => {
+            color_box.style.backgroundColor = "#" + color.value;
+        });
+    });
+</script>
+{% endblock %}
+
+
