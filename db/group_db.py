@@ -19,8 +19,8 @@ def create_group(group_name):
                     WHERE group_string = %s
                 ));'''
     try:
-        cur.execute(sql, (session['user_id'], group_name, random_string,))
-        cur.execute(sql2, (session['user_id'], random_string,))
+        cur.execute(sql, (session['user'], group_name, random_string,))
+        cur.execute(sql2, (session['user'], random_string,))
         conn.commit()
     except MySQLdb.Error as e:
         cur.close()
