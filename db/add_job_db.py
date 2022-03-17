@@ -1,10 +1,9 @@
-import MySQLdb
-import os
+from work_shift_management.db import connect_db
 
 
 # バイト先情報を登録
 def insert_work_shift_info(user_id, job_name, color):
-    conn = get_update_connection()
+    conn = connect_db.get_update_connection()
     cur = conn.cursor()
 
     sql = "INSERT INTO job_infos(user_id, job_name, color_code) VALUES(%s, %s, %s)"
@@ -19,30 +18,3 @@ def insert_work_shift_info(user_id, job_name, color):
     conn.close()
 
     return True
-
-
-# DBとのコネクションを取得
-def get_select_connection():
-    # 環境変数の取得
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(
-        user='select_user',
-        passwd=pw,
-        host='localhost',
-        db='work_shift_management',
-        charset="utf8"
-    )
-
-
-def get_update_connection():
-    # 環境変数の取得
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(
-        user='update_user',
-        passwd=pw,
-        host='localhost',
-        db='work_shift_management',
-        charset="utf8"
-    )
