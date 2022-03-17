@@ -7,7 +7,6 @@ add_job = Blueprint('add_job', __name__)
 # バイト先情報登録画面
 @add_job.route("/add_job")
 def add_job_page():
-    session['user'] = 1
     if "user" not in session:
         return redirect("/")
     else:
