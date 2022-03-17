@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-# from work_shift_management.db import edit_job_db
+from work_shift_management.db import edit_job_db
 
 edit_job = Blueprint('edit_job', __name__)
 
@@ -11,7 +11,11 @@ def edit_job_page():
         return redirect("/")
     else:
         error = request.args.get('error')
+
+        job_list = edit_job_db.get_user_job(session['user_id'])
+
         return render_template(
             'edit_job.html',
+            job_list=job_list,
             error=error
         )
