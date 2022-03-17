@@ -64,7 +64,7 @@ def entry_group_confirmation(uid, gid):
         result = cur.fetchall()
         cur.close()
         conn.close()
-        return False if result == 0 else True
+        return False if result[0][0] == 0 else True
     except MySQLdb.Error as e:
         cur.close()
         conn.close()
