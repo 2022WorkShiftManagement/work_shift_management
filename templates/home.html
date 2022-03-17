@@ -19,123 +19,13 @@
          <nav class="drawer-content">
             <p class="group_title">グループ</p>
             <ul class="drawer-list">
-               <li class="drawer-item">
+               <li class="drawer-item" id="group_list">
                   <div class="cp_actab">
                      <input type="radio" name="group" class="group_radio" id="01">
                      <label for="01" class="radio_ci"></label>
                      <input id="tab-one" type="checkbox" name="tabs">
-                     <label for="tab-one" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="02">
-                     <label for="02" class="radio_ci"></label>
-                     <input id="tab-two" type="checkbox" name="tabs">
-                     <label for="tab-two" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
-                  </div>
-                  <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="03">
-                     <label for="03" class="radio_ci"></label>
-                     <input id="tab-three" type="checkbox" name="tabs">
-                     <label for="tab-three" class="group_name">タイトル</label>
-                     <div class="cp_actab-content">
-                        <p>テキスト</p>
-                     </div>
+                     <label for="tab-one" class="group_name">自分</label>
+  
                   </div>
                </li>
                <!-- TODO:リンクを貼る -->
@@ -161,6 +51,36 @@
          </ul>
       </nav>
    </div>
+   <div id="easyModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h1>Great job 🎉</h1>
+               <span class="modalClose">×</span>
+               </div>
+               <div class="modal-body" id="modal-text">
+                  <p>タイトル</p>
+                  <input type="text" id="name" class="">
+                  <p>バイト先選択</p>
+                  <div class="cp_ipselect cp_sl04">
+                     <select required>
+                        <option value="" hidden>Choose</option>
+                        <option value="1">cat</option>
+                        <option value="2">dog</option>
+                        <option value="3">rabbit</option>
+                        <option value="4">squirrel</option>
+                     </select>
+                     </div>
+                  <p>開始日時</p>
+                  <input type="date" name="start">
+                  <input type="time" name="smp01" min="00:00" max="24:30" >
+                  <p>終了日時</p>
+                  <input type="date" name="birthday">
+                  <input type="time" name="smp01" min="00:00" max="24:30" >
+               
+                  <button>作成</button>
+               </div>
+            </div>
+         </div>
 </body>
 
 </html>

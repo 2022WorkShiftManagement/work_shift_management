@@ -295,7 +295,7 @@ input[type=radio]:checked+.radio_ci:before {
 }
 .days-area{
   width: 100%;
-  height: 3em;
+  height: 4em;
 
   border-top: solid #cccccc92 0.1em;
 }
@@ -309,4 +309,119 @@ input[type=radio]:checked+.radio_ci:before {
   padding-left: 1em;
   padding-top: 0.3em;
   font-size: 1em;
+}
+
+.day{
+  display: inline;
+  padding-left: 1em;
+  padding-top: 0.3em;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+.sun{
+  color: coral;
+}
+
+.sat{
+  color: cornflowerblue;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  width: 75%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalClose {
+  font-size: 2rem;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  color: black;
+}
+
+
+.cp_ipselect {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl04 {
+	position: relative;
+	border-radius: 2px;
+	border: 2px solid #da3c41;
+  border-radius: 50px;
+	background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.8em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #da3c41;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+	padding: 8px 38px 8px 8px;
+	color: #da3c41;
 }
