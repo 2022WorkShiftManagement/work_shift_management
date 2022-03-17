@@ -11,26 +11,26 @@
 <body>
 <div>
     <h1>ジョビカレンダー</h1>
-    <form action="" method="post">
+    <form action="{{url_for('login.top_page')}}" method="post">
         <ul>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="name" id="name">
-                    <label for="name">Mail</label>
+                    <input class="ef" type="text" name="mail" id="mail">
+                    <label for="mail">Mail</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="email" name="mail" id="mail">
-                    <label for="mail">PW</label>
+                    <input class="ef" type="password" name="pw" id="pw">
+                    <label for="pw">PW</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
         </ul>
         <div>
             <input type="submit" value="ログイン">
-            <a href="#">アカウントを作成する</a>
+            <a href="{{url_for('create_account.create_account_page')}}">アカウントを作成する</a>
         </div>
     </form>
 </div>
