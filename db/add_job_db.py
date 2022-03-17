@@ -1,4 +1,4 @@
-from work_shift_management.db import connect_db
+from db import connect_db
 
 
 # バイト先情報を登録
