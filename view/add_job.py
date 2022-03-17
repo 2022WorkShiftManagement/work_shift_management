@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from work_shift_management.db import add_job_db
+from db import add_job_db
 
 add_job = Blueprint('add_job', __name__)
 
