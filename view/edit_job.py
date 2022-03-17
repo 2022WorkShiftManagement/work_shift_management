@@ -13,7 +13,7 @@ def edit_job_page():
     else:
         error = request.args.get('error')
 
-        job_list = edit_job_db.get_user_job(session['user_id'])
+        job_list = edit_job_db.get_user_job(session['user'])
         for job in job_list:
             job['color_name'] = get_color(job['color'])
 
