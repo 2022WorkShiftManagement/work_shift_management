@@ -41,7 +41,7 @@ def confirm_job_page():
                 'color_name': get_color(job_color)
             }
 
-            return render_template('confirm_job.html')
+            return render_template('confirm_add_job.html')
 
         # 入力に不備があったら入力画面へリダイレクト
         return redirect(
