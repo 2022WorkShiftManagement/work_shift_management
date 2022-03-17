@@ -3,14 +3,15 @@ import hashlib
 import random
 import string
 import os
+from function import user_function
 
 
 # ユーザ情報取得処理
 def insert_account(account):
     salt = "".join(random.choices(string.ascii_letters, k=32))
-    b_pw = bytes(account['pw'], 'utf-8')
-    b_salt = bytes(salt, 'utf-8')
-    hashed_pw = hashlib.pbkdf2_hmac("sha256", b_pw, b_salt, 2560).hex()
+
+    # ハッシュ化の関数
+    hashed_pw = user_function.hash(salt, account['pw'])
 
     conn = get_update_connection()
     cur = conn.cursor()

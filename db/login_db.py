@@ -1,6 +1,7 @@
 import MySQLdb
 import hashlib
 import os
+from function import user_function
 
 
 def login(mail, pw):
@@ -9,9 +10,8 @@ def login(mail, pw):
     if salt is None:
         return None
 
-    b_pw = bytes(pw, 'utf-8')
-    b_salt = bytes(salt, 'utf-8')
-    hashed_pw = hashlib.pbkdf2_hmac("sha256", b_pw, b_salt, 2560).hex()
+    # ハッシュ化の関数
+    hashed_pw = user_function.hash(salt, pw)
 
     user_id = search_account(mail, hashed_pw)
 
@@ -64,16 +64,17 @@ def search_account(mail, pw):
 # DBとのコネクションを取得
 def get_select_connection():
     # 環境変数の取得
+    host = os.environ['DATABASE_HOST']
     pw = os.environ['DATABASE_PASS']
 
-    return MySQLdb.connect(user='select_user', passwd=pw, host='localhost', db='work_shift_management',
+    return MySQLdb.connect(user='select_user', passwd=pw, host=host, db='work_shift_management',
                            charset="utf8")
 
 
 def get_update_connection():
     # 環境変数の取得
+    host = os.environ['DATABASE_HOST']
     pw = os.environ['DATABASE_PASS']
 
-    return MySQLdb.connect(user='update_user', passwd=pw, host='localhost', db='work_shift_management',
+    return MySQLdb.connect(user='update_user', passwd=pw, host=host, db='work_shift_management',
                            charset="utf8")
-
