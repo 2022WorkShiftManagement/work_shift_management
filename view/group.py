@@ -7,12 +7,12 @@ group = Blueprint('group', __name__, url_prefix='/group')
 
 @group.route("/newGroup", methods=['GET', 'POST'])
 def create_group_form():
-    # if "user" not in session:  # セッションの有無
-    #     return redirect("/")
+    if "user" not in session:  # セッションの有無
+        return redirect("/")
     if request.method == 'POST':
         group_name = request.form.get('group_name')
         if group_name:
-            random_string = create_group(group_name)
+            random_string = create_group(session['user'], group_name)
             if random_string:
                 return redirect(url_for('group.group_detail', gid=random_string))
             else:
@@ -26,8 +26,8 @@ def create_group_form():
 
 @group.route('/detail/<string:gid>', methods=["POST", "GET"])
 def group_detail(gid):
-    # if "user" not in session:  # セッションの有無
-    #     return redirect("/")
+    if "user" not in session:  # セッションの有無
+        return redirect("/")
     print('group_ID:' + gid)
     group_details = select_group(gid)
     if group_details:

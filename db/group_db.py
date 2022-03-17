@@ -1,11 +1,10 @@
 import random
 import string
-from flask import session
 
 from db.connect_db import *
 
 
-def create_group(group_name):
+def create_group(uid,group_name):
     random_string = randomstring(16)
     print(random_string)
     conn = get_update_connection()
@@ -19,8 +18,8 @@ def create_group(group_name):
                     WHERE group_string = %s
                 ));'''
     try:
-        cur.execute(sql, (session['user'], group_name, random_string,))
-        cur.execute(sql2, (session['user'], random_string,))
+        cur.execute(sql, (uid, group_name, random_string,))
+        cur.execute(sql2, (uid, random_string,))
         conn.commit()
     except MySQLdb.Error as e:
         cur.close()
