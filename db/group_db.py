@@ -1,6 +1,8 @@
 import random
 import string
 
+import MySQLdb
+
 from db.connect_db import *
 
 
@@ -43,6 +45,26 @@ def select_group(gid):
         cur.close()
         conn.close()
         return group_details
+    except MySQLdb.Error as e:
+        cur.close()
+        conn.close()
+        return None
+
+
+def entry_group_confirmation(uid, gid):
+    conn = get_select_connection()
+    cur = conn.cursor()
+    sql = '''SELECT COUNT(*) FROM joining_groups
+            WHERE user_id = %s AND group_id = (
+                SELECT group_id from user_groups 
+                WHERE group_string = %s)
+            '''
+    try:
+        cur.execute(sql, (uid, gid))
+        result = cur.fetchall()
+        cur.close()
+        conn.close()
+        return False if result == 0 else True
     except MySQLdb.Error as e:
         cur.close()
         conn.close()
