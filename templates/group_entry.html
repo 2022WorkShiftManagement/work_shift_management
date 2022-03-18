@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}
+    グループ参加｜Jyobi-Calendar
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/group_entry.css') }}">
+{% endblock %}
+
+{% block back_page %}
+    <a href="#" onclick="window.history.back(); return false;">＜</a>
+{% endblock %}
+
+{% block header %}
+    グループ参加
+{% endblock %}
+
+{% block main %}
+    <main>
+    </main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
