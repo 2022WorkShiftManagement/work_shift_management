@@ -59,22 +59,23 @@ table {
   border-collapse:  collapse;
 }
 td {
-  padding: 15px 0;
+  padding: 10px 2px;
+}
+
+tbody td:nth-child(1) {
+  width: 20vw;
 }
 
 tbody td:nth-child(1) p {
-  margin: 2px 0 0 2px;
-  padding: 3px 5px;
+  font-size: 0.8rem;
   border-radius: 10px;
   background-color: rgba(255, 145, 0, 0.4);
-  font-size: 0.6rem;
 }
 
 tbody td:nth-child(2) {
-  font-size: 1.3rem;
-  width: 60%;
+  font-size: 1.4rem;
+  width: 60vw;
   font-weight: bold;
-  padding-left: 4px;
   text-align: left;
 }
 
