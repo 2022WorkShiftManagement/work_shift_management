@@ -3,6 +3,7 @@ import MySQLdb
 from db import connect_db
 
 
+# ユーザの登録しているバイト先を取得
 def get_user_job(user_id):
     conn = connect_db.get_update_connection()
     cur = conn.cursor(MySQLdb.cursors.DictCursor)
