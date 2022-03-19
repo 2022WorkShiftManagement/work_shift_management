@@ -44,7 +44,6 @@
             <li>
                 <div class="input_text">
                     <div class="select_color">
-                        <div id="color_box"></div>
                         <select name="color" id="color" class="ef">
                             {% for color_code in color_list %}
                             <option value="{{color_code}}">{{color_list[color_code]}}</option>
@@ -53,6 +52,7 @@
                         <label for="color">Color</label>
                         <span class="focus_line"></span>
                     </div>
+                    <div id="color_box"></div>
                 </div>
             </li>
         </ul>
