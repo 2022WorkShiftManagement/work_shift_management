@@ -59,3 +59,28 @@ def confirm_edit_job_page():
                 error='入力内容に不備があります。'
             )
         )
+
+
+# バイト先情報登録
+@edit_job.route("/update_job")
+def update_job():
+    if "user" not in session:
+        return redirect("/")
+    else:
+        update_result = edit_job_db.update_job(
+            session['user'],
+            session['edit_job']['id'],
+            session['edit_job']['name'],
+            session['edit_job']['color_code']
+        )
+
+        # データベースに登録できたか
+        if update_result:
+            return redirect("/home")
+
+        return redirect(
+            url_for(
+                'edit_job.edit_job_page',
+                error='登録に失敗しました。'
+            )
+        )

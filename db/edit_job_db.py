@@ -21,3 +21,23 @@ def get_user_job(user_id):
     conn.close()
 
     return job_list
+
+
+# バイト先情報を編集
+def update_job(user_id, job_id, job_name, color):
+    conn = connect_db.get_update_connection()
+    cur = conn.cursor()
+
+    sql = "UPDATE job_infos SET job_name = %s, color_code = %s WHERE user_id = %s and job_id = %s"
+
+    try:
+        cur.execute(sql, (job_name, int(color, 16), user_id, job_id))
+    except Exception as e:
+        print(e)
+        return False
+
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    return True
