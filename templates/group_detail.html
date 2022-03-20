@@ -35,55 +35,29 @@
             <div id="members_list">
                 <h3>Member List</h3>
                 <table>
-                    <ul>{% for i in details %}
-                        {% if i[0] == 1 %}
-                            <tr>
+                    {% for i in details %}
+                        <tr>
+                            <td>
                                 {% if i[0] == i[3] %}
-                                    <td>
-                                        <p>Leader</p>
-                                    </td>
-                                    <td>
-                                        <li>{{ i[1] }}</li>
-                                    </td>
-                                    <td></td>
-                                {% else %}
-                                    <td>
-                                        <p></p>
-                                    </td>
-                                    <td>
-                                        <li>{{ i[1] }}</li>
-                                    </td>
-                                    <td>
-                                        <a onclick="alert('退室')">退室</a>
-                                    </td>
+                                    <p>Leader</p>
+                                {% elif i[0] == session['user'] %}
+                                    <p>自分</p>
                                 {% endif %}
-                            </tr>
-                        {% endif %}
+                            </td>
+                            <td>
+                                {{ i[1] }}
+                            </td>
+                            <td>
+                                {% if i[0] != i[3] %}
+                                    {% if i[0] == session['user'][0] %}
+                                        <a onclick="alert('退室')">Escape</a>
+                                    {% else %}
+                                        <a onclick="alert('削除')">Remove</a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
                     {% endfor %}
-
-                        {% for i in details %}
-                            {% if i[0] != 1 %}
-                                {% if i[0] == i[3] %}
-                                    <tr>
-                                        <td><p>Leader</p></td>
-                                        <td>
-                                            <li>{{ i[1] }}</li>
-                                        </td>
-                                        <td></td>
-                                        {% else %}
-                                        <td></td>
-                                        <td>
-                                            <li>{{ i[1] }}</li>
-                                        </td>
-                                        <td>
-                                            <a onclick="alert('削除')">Remove</a>
-                                        </td>
-                                    </tr>
-                                {% endif %}
-
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
                 </table>
             </div>
         {% endif %}

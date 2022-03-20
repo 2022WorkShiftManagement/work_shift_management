@@ -23,13 +23,13 @@ def create_group(uid,group_name):
         cur.execute(sql, (uid, group_name, random_string,))
         cur.execute(sql2, (uid, random_string,))
         conn.commit()
+        cur.close()
+        conn.close()
+        return random_string
     except MySQLdb.Error as e:
         cur.close()
         conn.close()
         return None
-    cur.close()
-    conn.close()
-    return random_string
 
 
 def select_group(gid):
@@ -69,6 +69,45 @@ def entry_group_confirmation(uid, gid):
         cur.close()
         conn.close()
         return None
+
+
+def select_member_count(gid):
+    conn = get_select_connection()
+    cur = conn.cursor()
+    sql = '''SELECT COUNT(*) FROM joining_groups
+            WHERE group_id = (
+                SELECT group_id FROM user_groups
+                WHERE group_string = %s)
+            '''
+    try:
+        cur.execute(sql, (gid,))
+        result = cur.fetchone()
+        cur.close()
+        conn.close()
+        return result
+    except MySQLdb.Error as e:
+        cur.close()
+        conn.close()
+        return None
+
+
+def join_group(uid, gid):
+    conn = get_update_connection()
+    cur = conn.cursor()
+    sql = '''INSERT INTO joining_groups  VALUES(
+            null, %s, ( SELECT group_id FROM user_groups
+                        WHERE group_string = %s
+                        ))'''
+    try:
+        cur.execute(sql, (uid, gid,))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return True
+    except MySQLdb.Error as e:
+        cur.close()
+        conn.close()
+        return False
 
 
 def randomstring(n):
