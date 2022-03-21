@@ -110,6 +110,24 @@ def join_group(uid, gid):
         return False
 
 
+def remove_member(uid, gid):
+    conn = get_update_connection()
+    cur = conn.cursor()
+    sql = '''DELETE FROM joining_groups
+                WHERE user_id=%s AND group_id=(
+                SELECT group_id FROM user_groups
+                    WHERE group_string=%s)'''
+    try:
+        cur.execute(sql, (uid, gid,))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except MySQLdb.Error:
+        cur.close()
+        conn.close()
+    return
+
+
 def randomstring(n):
     random_string = [random.choice(string.ascii_letters + string.digits) for i in range(n)]
     return ''.join(random_string)

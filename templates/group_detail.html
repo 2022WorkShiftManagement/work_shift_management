@@ -54,9 +54,9 @@
                             <td>
                                 {% if i[0] != i[3] %}
                                     {% if i[0] == session['user'][0] %}
-                                        <a onclick="alert('退室')">Escape</a>
+                                        <a href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}">Escape</a>
                                     {% else %}
-                                        <a onclick="alert('削除')">Remove</a>
+                                        <a href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}">Remove</a>
                                     {% endif %}
                                 {% endif %}
                             </td>
