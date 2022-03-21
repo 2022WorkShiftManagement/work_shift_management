@@ -31,8 +31,12 @@
             </div>
             <div id="group_link">
                 <h3>Group Link</h3>
-                <img id="group_link_text_copy" src="{{ url_for('static', filename='images/copyLogo.png') }}" alt="コピー" onclick="copyToClipboard()">
-                {#            <a href="#" id="group_link_text_copy" onclick="copyToClipboard()">Copy</a>#}
+                <img
+                        id="group_link_text_copy"
+                        src="{{ url_for('static', filename='images/copyLogo.png') }}"
+                        alt="コピー"
+                        onclick="copyToClipboard()"
+                />
                 <input class="ef" id="group_link_text" type="text" value="{{ details[0][5] }}" readonly>
             </div>
             <div id="group_link_qr_img"></div>
