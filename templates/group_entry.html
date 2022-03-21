@@ -18,15 +18,17 @@
 
 {% block main %}
     <main>
-        {% if alert_message %}
-            {% if alert_message == 'entry_error' %}
-                <h3>グループが存在しません</h3>
+        <div>
+            {% if alert_message %}
+                {% if alert_message == 'entry_error' %}
+                    <h3>グループが存在しません</h3>
+                {% endif %}
+            {% else %}
+                <h2 class="group_name">{{ details[0][4] }}</h2>
+                <p class="member_count">参加メンバー : {{ member_count[0] }}名</p>
+                <a class="entry_button" href="{{ url_for('group.group_entry', gid=details[0][5]) }}">参加する</a>
             {% endif %}
-        {% else %}
-            <h2>{{ details[0][4] }}</h2>
-            <p>メンバー : {{ member_count[0] }}人</p>
-            <a href="{{ url_for('group.group_entry', gid=details[0][5]) }}">参加する</a>
-        {% endif %}
+        </div>
     </main>
 {% endblock %}
 

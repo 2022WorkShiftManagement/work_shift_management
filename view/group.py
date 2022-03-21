@@ -43,7 +43,7 @@ def group_detail(gid):
         else:
             return render_template('group_entry.html', details=group_details, member_count=member_count)
     else:
-        return render_template('group_detail.html', alert_message="グループが無いよ")
+        return render_template('group_detail.html', alert_message="グループが存在しません")
 
 
 @group.route('/entry/<string:gid>')

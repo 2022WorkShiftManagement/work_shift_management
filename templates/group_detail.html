@@ -19,7 +19,11 @@
 {% block main %}
     <main>
         {% if not details %}
-            <p>{{ alert_message }}</p>
+            {% if alert_message %}
+                <div id="alert_message">
+                    <p>{{ alert_message }}</p>
+                </div>
+            {% endif %}
         {% else %}
             <div id="group_name">
                 <h3>Group Name</h3>

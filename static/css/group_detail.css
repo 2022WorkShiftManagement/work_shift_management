@@ -1,92 +1,102 @@
 @charset "UTF-8";
 
 body{
-  min-height: 100vh;
-  font-size: 1.2rem;
+    min-height: 100vh;
+    font-size: 1.2rem;
 }
 
 main {
-  width: 90%;
-  min-height: 85vh;
-  vertical-align: middle;
-  margin: auto;
+    width: 90%;
+    min-height: 85vh;
+    vertical-align: middle;
+    margin: auto;
 }
 
 div {
-  margin: 0 3%;
-  padding-top: 10px;
-  text-align: center;
+    margin: 0 3%;
+    padding-top: 10px;
+    text-align: center;
 }
 
 h3 {
-  text-align: left;
+    text-align: left;
 }
 
+#alert_message {
+    display:flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    justify-content:center;
+    align-items:center;
+}
+
+
 .ef {
-  font-size: 1.2rem;
-  padding: 10px 10px 2px;
-  width: 95%;
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
+    font-size: 1.2rem;
+    padding: 10px 10px 2px;
+    width: 95%;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
 }
 .ef:focus {
-  outline: none;
+    outline: none;
 }
 
 #group_link {
-  position: relative;
+    position: relative;
 }
 
 #group_link_text_copy {
-  position: absolute;
-  top: 10px;
-  right: 2px;
-  width: 10vw;
-  max-width: 40px;
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    width: 10vw;
+    max-width: 40px;
 }
 
 #group_link_qr_img {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 canvas {
-  width: 230px;
-  height: 230px;
+    width: 230px;
+    height: 230px;
 }
 
 table {
-  width: 100%;
-  margin: 0 auto;
-  border-collapse:  collapse;
+    width: 100%;
+    margin: 0 auto;
+    border-collapse:  collapse;
 }
 td {
-  padding: 15px 0;
+    padding: 15px 0;
 }
 
 tbody td:nth-child(1) p {
-  margin: 2px 0 0 2px;
-  padding: 3px 5px;
-  border-radius: 10px;
-  background-color: rgba(255, 145, 0, 0.4);
-  font-size: 0.6rem;
+    margin: 2px 0 0 2px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    background-color: rgba(255, 145, 0, 0.4);
+    font-size: 0.6rem;
 }
 
 tbody td:nth-child(2) {
-  font-size: 1.3rem;
-  width: 60%;
-  font-weight: bold;
-  padding-left: 4px;
-  text-align: left;
+    font-size: 1.3rem;
+    width: 60%;
+    font-weight: bold;
+    padding-left: 4px;
+    text-align: left;
 }
 
 tbody td:nth-child(3) a {
-  font-size: 1rem;
-  color: #FFFFFF;
-  background-color: #303030;
-  padding: 8px 10px;
-  border-radius: 100vh;
-  border:none;
+    font-size: 1rem;
+    color: #FFFFFF;
+    background-color: #303030;
+    padding: 8px 10px;
+    border-radius: 100vh;
+    border:none;
 }
 
 tbody > tr {
-  border-bottom: 1px solid #9e9e9e;
+    border-bottom: 1px solid #9e9e9e;
 }
