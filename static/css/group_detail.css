@@ -72,6 +72,10 @@ td {
     padding: 15px 0;
 }
 
+tbody td:nth-child(1) {
+  width: 20vw;
+}
+
 tbody td:nth-child(1) p {
     margin: 2px 0 0 2px;
     padding: 3px 5px;
