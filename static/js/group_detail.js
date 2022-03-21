@@ -14,3 +14,13 @@ const copyToClipboard = () => {
     }
    alert("クリップボードにコピーしました");
 };
+
+const confirm_remove = (message) => {
+    const res = confirm(message)
+    if (res) {
+        return true;
+    } else {
+        return false;
+    }
+
+}

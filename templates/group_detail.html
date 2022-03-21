@@ -54,9 +54,15 @@
                             <td>
                                 {% if i[0] != i[3] %}
                                     {% if i[0] == session['user'][0] %}
-                                        <a href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}">Escape</a>
+                                        <a
+                                                href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}"
+                                                onclick="return confirm_remove('グループから退出しますか？')"
+                                        >Escape</a>
                                     {% else %}
-                                        <a href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}">Remove</a>
+                                        <a
+                                                href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}"
+                                                onclick="return confirm_remove('グループから退出させますか？')"
+                                        >Remove</a>
                                     {% endif %}
                                 {% endif %}
                             </td>
