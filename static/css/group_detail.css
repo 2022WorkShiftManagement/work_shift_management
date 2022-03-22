@@ -24,11 +24,11 @@ h3 {
 
 .img_button {
     position: absolute;
-    width: 10vw;
+    width: 35px;
 }
 
 #leader_option img {
-    top: 15px;
+    top: 2vh;
     right: 10px;
 }
 
@@ -61,9 +61,8 @@ h3 {
 }
 
 #group_link_text_copy {
-    top: 10px;
-    right: 2px;
-    max-width: 40px;
+    bottom: 3px;
+    right: 2vw;
 }
 
 #group_link_qr_img {
