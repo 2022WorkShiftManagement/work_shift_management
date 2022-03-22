@@ -1,13 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>シフト管理</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ジョビカレンダー</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 </head>
 <body>
-   <h1>シフト管理</h1>
-   
+<div>
+    <h1>ジョビカレンダー</h1>
+    <form action="{{url_for('login.top_page')}}" method="post">
+        <ul>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" name="mail" id="mail">
+                    <label for="mail">Mail</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="password" name="pw" id="pw">
+                    <label for="pw">PW</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="ログイン">
+            <a href="{{url_for('create_account.create_account_page')}}">アカウントを作成する</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

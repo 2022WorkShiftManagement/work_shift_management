@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+バイト先情報登録【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/add_job.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="#">＜</a>
+{% endblock %}
+
+{% block header %}
+<h2>バイト先情報登録</h2>
+{% endblock %}
+
+{% block main %}
+<main>
+    <p id="error">{% if error %}{{error}}{% endif %}</p>
+    <form action="{{url_for('add_job.confirm_job_page')}}" method="post">
+        <ul>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" name="job_name" id="job_name">
+                    <label for="job_name">JobName</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <div class="select_color">
+                        <select name="color" id="color" class="ef">
+                            {% for color_code in color %}
+                            <option value="{{color_code}}">{{color[color_code]}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="color">Color</label>
+                        <span class="focus_line"></span>
+                    </div>
+                    <div id="color_box"></div>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="次へ">
+        </div>
+    </form>
+</main>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const color_box = document.getElementById('color_box');
+        const color = document.getElementById('color');
+
+        color_box.style.backgroundColor = "#" + color.value;
+
+        color.addEventListener('change', () => {
+            color_box.style.backgroundColor = "#" + color.value;
+        });
+    });
+</script>
+{% endblock %}
+
+
