@@ -60,6 +60,10 @@
             <input type="submit" value="次へ">
         </div>
     </form>
+    <form action="{{url_for('edit_job.delete_job')}}" method="get" onsubmit="return delete_check()">
+        <input type="hidden" name="job_id" value="" id="delete_job_id">
+        <input type="submit" value="「」を削除する" id="delete_job">
+    </form>
 </main>
 {% endblock %}
 
@@ -70,6 +74,8 @@
         const color = document.getElementById('color');
         const edit_job = document.getElementById('edit_job');
         const job_name = document.getElementById('job_name');
+        const delete_job = document.getElementById('delete_job');
+        const delete_job_id = document.getElementById('delete_job_id');
         const job_list = {{ job_list | tojson }};
         const color_list = {{ color_list | tojson }};
 
@@ -79,19 +85,26 @@
         color.add(option, 0)
         color[0].selected = true;
         color_box.style.backgroundColor = "#" + job_list[0]['color'];
+        delete_job.setAttribute('value', `「${job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name']}」を削除する`);
+        delete_job_id.setAttribute('value', edit_job.value);
 
         color.addEventListener('change', () => {
             color_box.style.backgroundColor = "#" + color.value;
         });
 
         edit_job.addEventListener('change', () => {
-            job_name.value = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name'];
+            job_name.value, delete_job.textContent  = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name'];
             color[0].textContent = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['color_name']
             color[0].value = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['color']
             color[0].selected = true;
             color_box.style.backgroundColor = "#" + color[0].value;
+            delete_job.setAttribute('value', `「${job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name']}」を削除する`);
+            delete_job_id.setAttribute('value', edit_job.value);
         });
     });
+    const delete_check = () => {
+        return window.confirm(`バイト先を削除しますか？`);
+    }
 </script>
 {% endblock %}
 
