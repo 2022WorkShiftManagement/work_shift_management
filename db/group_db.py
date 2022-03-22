@@ -115,18 +115,24 @@ def remove_member(uid, gid):
     conn = get_update_connection()
     cur = conn.cursor()
     sql = '''DELETE FROM joining_groups
-                WHERE user_id=%s AND group_id=(
+                WHERE user_id=%s
+                AND user_id!=(
+                SELECT user_id FROM user_groups
+                    WHERE group_string=%s) 
+                AND group_id=(
                 SELECT group_id FROM user_groups
                     WHERE group_string=%s)'''
+
     try:
-        cur.execute(sql, (uid, gid,))
+        cur.execute(sql, (uid, gid, gid,))
         conn.commit()
         cur.close()
         conn.close()
+        return True
     except MySQLdb.Error as e:
         cur.close()
         conn.close()
-    return
+        return False
 
 
 def delete_group_db(gid):
