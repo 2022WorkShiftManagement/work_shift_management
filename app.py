@@ -1,9 +1,7 @@
 from flask import Flask, render_template, session
 from view.create_account import create_account
 from view.login import login
-
 from view.add_job import add_job
-
 from view.edit_job import edit_job
 
 
@@ -23,7 +21,7 @@ def index():
 app.register_blueprint(create_account)
 # ログインページ
 app.register_blueprint(login)
-# バイト先情報登録画面
+# バイト先情報登録ページ
 app.register_blueprint(add_job)
 # バイト先情報編集画面
 app.register_blueprint(edit_job)
