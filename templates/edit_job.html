@@ -93,7 +93,8 @@
         });
 
         edit_job.addEventListener('change', () => {
-            job_name.value, delete_job.textContent  = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name'];
+            job_name.value = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name'];
+            delete_job.textContent = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['job_name'];
             color[0].textContent = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['color_name']
             color[0].value = job_list.find(({ job_id }) => job_id.toString() === edit_job.value)['color']
             color[0].selected = true;
