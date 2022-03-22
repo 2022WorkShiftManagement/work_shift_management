@@ -42,7 +42,28 @@
             {% endif %}
             <div id="group_name">
                 <h3>Group Name</h3>
-                <input class="ef" id="group_name_text" value="{{ details[0][4] }}" readonly>
+                <div id="group_name_form">
+                    <input class="ef" id="group_name_text" value="{{ details[0][4] }}" readonly>
+                    {% if session['user'][0] == details[0][3] %}
+                        <div id="edit_button">
+                            <img id="edit_name_button"
+                                 class="edit_button_before"
+                                 src="{{ url_for('static', filename='images/pencil.png') }}"
+                                 alt="名称変更"
+                            />
+                            <img id="submit_button"
+                                 class="edit_button_after"
+                                 src="{{ url_for('static', filename='images/check.png') }}"
+                                 alt="決定"
+                            />
+                            <img id="cancel_button"
+                                 class="edit_button_after"
+                                 src="{{ url_for('static', filename='images/cross.png') }}"
+                                 alt="キャンセル"
+                            />
+                        </div>
+                    {% endif %}
+                </div>
             </div>
             <div id="group_link">
                 <h3>Group Link</h3>
@@ -53,7 +74,7 @@
                         alt="コピー"
                         onclick="copyToClipboard()"
                 />
-                <input class="ef" id="group_link_text" type="text" value="{{ details[0][5] }}" readonly>
+                <input class="ef" id="group_link_text" type="text" value="{{ details[0][5] }}" readonly />
             </div>
             <div id="group_link_qr_img"></div>
             <div id="members_list">

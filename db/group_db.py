@@ -134,8 +134,23 @@ def delete_group_db(gid):
     cur = conn.cursor()
     sql = 'DELETE FROM user_groups WHERE group_string=%s'
     try:
-        print(gid)
         cur.execute(sql, (gid,))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return True
+    except MySQLdb.Error as e:
+        cur.close()
+        conn.close()
+        return False
+
+
+def update_group(gid, gname):
+    conn = get_update_connection()
+    cur = conn.cursor()
+    sql = 'UPDATE user_groups SET group_name=%s WHERE group_string=%s'
+    try:
+        cur.execute(sql, (gname, gid,))
         conn.commit()
         cur.close()
         conn.close()
