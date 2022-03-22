@@ -94,10 +94,11 @@ def select_member_count(gid):
 def join_group(uid, gid):
     conn = get_update_connection()
     cur = conn.cursor()
-    sql = '''INSERT INTO joining_groups  VALUES(
-            null, %s, ( SELECT group_id FROM user_groups
-                        WHERE group_string = %s
-                        ))'''
+    sql = '''INSERT INTO joining_groups
+            VALUES(null, %s, (
+                SELECT group_id FROM user_groups
+                WHERE group_string = %s
+            ))'''
     try:
         cur.execute(sql, (uid, gid,))
         conn.commit()
@@ -122,10 +123,27 @@ def remove_member(uid, gid):
         conn.commit()
         cur.close()
         conn.close()
-    except MySQLdb.Error:
+    except MySQLdb.Error as e:
         cur.close()
         conn.close()
     return
+
+
+def delete_group_db(gid):
+    conn = get_update_connection()
+    cur = conn.cursor()
+    sql = 'DELETE FROM user_groups WHERE group_string=%s'
+    try:
+        print(gid)
+        cur.execute(sql, (gid,))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return True
+    except MySQLdb.Error as e:
+        cur.close()
+        conn.close()
+        return False
 
 
 def randomstring(n):

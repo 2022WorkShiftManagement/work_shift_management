@@ -6,7 +6,8 @@ from db.group_db import (
     select_member_count,
     entry_group_confirmation,
     join_group,
-    remove_member
+    remove_member,
+    delete_group_db
 )
 
 group = Blueprint('group', __name__, url_prefix='/group')
@@ -62,4 +63,14 @@ def remove_group(uid, gid):
     if "user" not in session:
         return redirect("/")
     remove_member(uid, gid)
+    return redirect(url_for('group.group_detail', gid=gid))
+
+
+@group.route('/delete_group/<string:gid>')
+def delete_group(gid):
+    if "user" not in session:
+        return redirect("/")
+    delete_ok = delete_group_db(gid)
+    if delete_ok:
+        return redirect("/home")
     return redirect(url_for('group.group_detail', gid=gid))

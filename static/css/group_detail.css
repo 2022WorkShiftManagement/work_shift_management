@@ -22,6 +22,16 @@ h3 {
     text-align: left;
 }
 
+.img_button {
+    position: absolute;
+    width: 10vw;
+}
+
+#leader_option img {
+    top: 15px;
+    right: 10px;
+}
+
 #alert_message {
     display:flex;
     font-size: 1.5rem;
@@ -31,6 +41,9 @@ h3 {
     align-items:center;
 }
 
+#leader_option {
+    text-align: right;
+}
 
 .ef {
     font-size: 1.2rem;
@@ -48,10 +61,8 @@ h3 {
 }
 
 #group_link_text_copy {
-    position: absolute;
     top: 10px;
     right: 2px;
-    width: 10vw;
     max-width: 40px;
 }
 
@@ -73,7 +84,7 @@ td {
 }
 
 tbody td:nth-child(1) {
-  width: 20vw;
+    width: 20vw;
 }
 
 tbody td:nth-child(1) p {

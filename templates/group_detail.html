@@ -25,6 +25,21 @@
                 </div>
             {% endif %}
         {% else %}
+            {% if session['user'][0] == details[0][3] %}
+                <div id="leader_option">
+                    <a
+                            id="delete_group"
+                            href="{{ url_for('group.delete_group', gid=details[0][5]) }}"
+                            onclick="return confirm_remove('グループを削除してよろしいですか?\n※参加しているメンバーも解散になります')"
+                    >
+                        <img
+                                class="img_button"
+                                src="{{ url_for('static', filename='images/trashBox.png')}}"
+                                alt="グループ削除"
+                        />
+                    </a>
+                </div>
+            {% endif %}
             <div id="group_name">
                 <h3>Group Name</h3>
                 <input class="ef" id="group_name_text" value="{{ details[0][4] }}" readonly>
@@ -33,6 +48,7 @@
                 <h3>Group Link</h3>
                 <img
                         id="group_link_text_copy"
+                        class="img_button"
                         src="{{ url_for('static', filename='images/copyLogo.png') }}"
                         alt="コピー"
                         onclick="copyToClipboard()"
@@ -48,8 +64,6 @@
                             <td>
                                 {% if i[0] == i[3] %}
                                     <p>Leader</p>
-                                {% elif i[0] == session['user'] %}
-                                    <p>自分</p>
                                 {% endif %}
                             </td>
                             <td>
