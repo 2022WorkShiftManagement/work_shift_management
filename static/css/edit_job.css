@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #FF9100;
+    height: 15vh;
+    position: relative;
+}
+
+header h2 {
+    position: absolute;
+    font-size: 150%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+}
+
+header a {
+    position: absolute;
+    padding: 10px;
+    bottom: 0;
+    color: #000000;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main form {
+    width: 90%;
+    margin: auto;
+}
+
+main form ul {
+    list-style: none;
+}
+
+main form label,
+main form input {
+    font-size: 120%;
+    display: block;
+    width: 100%;
+}
+
+.input_text {
+    position: relative;
+    margin: 60px 3%;
+}
+
+.input_text input {
+    box-sizing: border-box;
+    width: 100%;
+    letter-spacing: 1px;
+    padding-left: 6em;
+}
+
+.input_text input:focus,
+.input_text select
+{
+    outline: none;
+}
+
+.input_text select {
+    font-size: 120%;
+    width: 100%;
+    padding-left: 6em;
+}
+
+#color_box {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    margin: auto;
+}
+
+.ef {
+    padding: 4px 0;
+    border: none;
+    background-color: transparent;
+}
+
+.ef ~ .focus_line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: 0.4s;
+    background-color: #1b2538;
+}
+
+.ef:focus ~ .focus_line,
+.input_text.ef ~ .focus_line {
+    width: 100%;
+    background-color: #FF9100;
+    transition: 0.4s;
+}
+
+.ef ~ label {
+    position: absolute;
+    z-index: -1;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    color: #aaaaaa;
+}
+
+.ef:focus ~ label, .input_text.ef ~ label {
+    font-size: 100%;
+    top: -16px;
+    transition: 0.3s;
+    color: #FF9100;
+}
+
+main form input[type="submit"] {
+    -webkit-appearance: none;
+    color: #FFFFFF;
+    background-color: #303030;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 100vh;
+    border:none;
+}
+
+form > div {
+    position: absolute;
+    width: 90vw;
+    bottom: 10vh;
+    text-align: center;
+}
+
+#error {
+    color: #FF0000;
+    text-align: center;
+    padding-top: 10px;
+}
