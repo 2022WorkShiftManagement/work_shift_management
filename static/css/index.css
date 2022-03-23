@@ -20,8 +20,8 @@ body > div {
 
 h1 {
     text-align: center;
-    color: #303030;
-    text-shadow: #FFFFFF 2px 2px;
+    color: #FF9100;
+    text-shadow: #303030 2px 2px;
 }
 
 form {
@@ -46,7 +46,7 @@ form input {
 }
 
 .input_text input {
-    color: #FFFFFF;
+    color: #303030;
     box-sizing: border-box;
     width: 100%;
     letter-spacing: 1px;
@@ -70,13 +70,13 @@ form input {
     width: 100%;
     height: 2px;
     transition: 0.4s;
-    background-color: #1b2538;
+    background-color: #303030;
 }
 
 .ef:focus ~ .focus_line,
 .input_text.ef ~ .focus_line {
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: #FF9100;
     transition: 0.4s;
 }
 
@@ -88,14 +88,14 @@ form input {
     width: 100%;
     transition: 0.3s;
     letter-spacing: 1px;
-    color: #FFFFFF;
+    color: #303030;
 }
 
 .ef:focus ~ label, .input_text.ef ~ label {
     font-size: 100%;
     top: -16px;
     transition: 0.3s;
-    color: #FFFFFF;
+    color: #FF9100;
 }
 
 form input[type="submit"] {
@@ -108,6 +108,12 @@ form input[type="submit"] {
     border: none;
 }
 
+form input[type="submit"]:hover {
+    color: #FF9100;
+    background-color: #505050;
+    transition: 0.3s;
+}
+
 form > div {
     position: absolute;
     width: 90vw;
@@ -116,5 +122,9 @@ form > div {
 }
 
 a {
-    color: #FFFFFF;
+    color: #303030;
+}
+
+a:hover {
+    color: #FF9100;
 }

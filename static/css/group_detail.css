@@ -38,6 +38,7 @@ h3 {
 }
 
 #edit_button {
+    cursor: pointer;
     position: absolute;
     top: 7px;
     right: -2px;
@@ -84,6 +85,7 @@ h3 {
 }
 
 #group_link_text_copy {
+    cursor: pointer;
     bottom: 3px;
     right: 2vw;
 }

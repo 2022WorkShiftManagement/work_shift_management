@@ -13,6 +13,7 @@ header {
     background-color: #C5E1EC;
     height: 15vh;
     position: relative;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,0.5);
 }
 
 header h2 {
