@@ -32,6 +32,29 @@ h3 {
     right: 10px;
 }
 
+#group_name_form {
+    margin: 0;
+    position: relative;
+}
+
+#edit_button {
+    position: absolute;
+    top: 7px;
+    right: -2px;
+}
+
+#edit_button img {
+    width: 25px;
+}
+
+.edit_button_before {
+    padding-left: 10px;
+}
+
+.edit_button_after {
+    display: none;
+}
+
 #alert_message {
     display:flex;
     font-size: 1.5rem;
@@ -112,8 +135,6 @@ tbody td:nth-child(3) a {
     border:none;
 }
 
-tbody td:nth-child(3) a:hover,
-tbody td:nth-child(3) a:focs,
 
 tbody > tr {
     border-bottom: 1px solid #9e9e9e;

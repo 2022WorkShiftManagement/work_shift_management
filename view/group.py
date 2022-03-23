@@ -1,14 +1,13 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for
-
-from db.group_db import (
-    create_group,
-    select_group,
-    select_member_count,
-    entry_group_confirmation,
-    join_group,
-    remove_member,
-    delete_group_db
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    session,
+    redirect,
+    url_for
 )
+
+from db.group_db import *
 
 group = Blueprint('group', __name__, url_prefix='/group')
 
@@ -32,12 +31,15 @@ def create_group_form():
         return render_template("create_group.html")
 
 
-@group.route('/detail/<string:gid>')
+@group.route('/detail/<string:gid>', methods=['GET', 'POST'])
 def group_detail(gid):
     if "user" not in session:  # セッションの有無
         return redirect("/")
     group_details = select_group(gid)
     member_count = select_member_count(gid)
+    if request.method == 'POST':
+        group_name = request.form.get('new_group_name')
+        update_group(gid, group_name)
     if group_details:
         joining_already = entry_group_confirmation(session['user'], gid)
         if joining_already:
