@@ -25,15 +25,56 @@
                 </div>
             {% endif %}
         {% else %}
+            {% if session['user'][0] == details[0][3] %}
+                <div id="leader_option">
+                    <a
+                            id="delete_group"
+                            href="{{ url_for('group.delete_group', gid=details[0][5]) }}"
+                            onclick="return confirm_remove('グループを削除してよろしいですか?\n※参加しているメンバーも解散になります')"
+                    >
+                        <img
+                                class="img_button"
+                                src="{{ url_for('static', filename='images/trashBox.png')}}"
+                                alt="グループ削除"
+                        />
+                    </a>
+                </div>
+            {% endif %}
             <div id="group_name">
                 <h3>Group Name</h3>
-                <input class="ef" id="group_name_text" value="{{ details[0][4] }}" readonly>
+                <div id="group_name_form">
+                    <input class="ef" id="group_name_text" value="{{ details[0][4] }}" readonly>
+                    {% if session['user'][0] == details[0][3] %}
+                        <div id="edit_button">
+                            <img id="edit_name_button"
+                                 class="edit_button_before"
+                                 src="{{ url_for('static', filename='images/pencil.png') }}"
+                                 alt="名称変更"
+                            />
+                            <img id="submit_button"
+                                 class="edit_button_after"
+                                 src="{{ url_for('static', filename='images/check.png') }}"
+                                 alt="決定"
+                            />
+                            <img id="cancel_button"
+                                 class="edit_button_after"
+                                 src="{{ url_for('static', filename='images/cross.png') }}"
+                                 alt="キャンセル"
+                            />
+                        </div>
+                    {% endif %}
+                </div>
             </div>
             <div id="group_link">
                 <h3>Group Link</h3>
-                <img id="group_link_text_copy" src="{{ url_for('static', filename='images/copyLogo.png') }}" alt="コピー" onclick="copyToClipboard()">
-                {#            <a href="#" id="group_link_text_copy" onclick="copyToClipboard()">Copy</a>#}
-                <input class="ef" id="group_link_text" type="text" value="{{ details[0][5] }}" readonly>
+                <img
+                        id="group_link_text_copy"
+                        class="img_button"
+                        src="{{ url_for('static', filename='images/copyLogo.png') }}"
+                        alt="コピー"
+                        onclick="copyToClipboard()"
+                />
+                <input class="ef" id="group_link_text" type="text" value="{{ details[0][5] }}" readonly />
             </div>
             <div id="group_link_qr_img"></div>
             <div id="members_list">
@@ -44,8 +85,6 @@
                             <td>
                                 {% if i[0] == i[3] %}
                                     <p>Leader</p>
-                                {% elif i[0] == session['user'] %}
-                                    <p>自分</p>
                                 {% endif %}
                             </td>
                             <td>
@@ -54,9 +93,15 @@
                             <td>
                                 {% if i[0] != i[3] %}
                                     {% if i[0] == session['user'][0] %}
-                                        <a onclick="alert('退室')">Escape</a>
+                                        <a
+                                                href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}"
+                                                onclick="return confirm_remove('グループから退出しますか？')"
+                                        >Escape</a>
                                     {% else %}
-                                        <a onclick="alert('削除')">Remove</a>
+                                        <a
+                                                href="{{ url_for('group.remove_group', uid=i[0], gid=i[5]) }}"
+                                                onclick="return confirm_remove('グループから退出させますか？')"
+                                        >Remove</a>
                                     {% endif %}
                                 {% endif %}
                             </td>
