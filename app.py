@@ -1,9 +1,7 @@
 from flask import Flask, render_template, session
 from view.create_account import create_account
 from view.login import login
-
 from view.add_job import add_job
-
 from view.edit_job import edit_job
 
 
@@ -18,7 +16,7 @@ def index():
     session.pop('account', None)
     return render_template('index.html')
 
-
+  
 # アカウント作成ページ
 app.register_blueprint(create_account)
 # ログインページ
