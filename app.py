@@ -25,6 +25,8 @@ app.register_blueprint(login)
 # バイト先情報登録ページ
 app.register_blueprint(add_job)
 
+app.register_blueprint(home)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

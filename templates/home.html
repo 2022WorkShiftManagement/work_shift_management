@@ -11,7 +11,7 @@
 </head>
 
 <body>
-   <header class="header">
+   <header class="header sticky-head">
       <div class="logo">JYOBI calendar</div><!-- /.logo -->
       <div class="drawer">
          <input type="checkbox" id="drawer-check" class="drawer-hidden">
@@ -21,7 +21,7 @@
             <ul class="drawer-list">
                <li class="drawer-item" id="group_list">
                   <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio" id="01">
+                     <input type="radio" name="group" class="group_radio dradio" id="01">
                      <label for="01" class="radio_ci"></label>
                      <input id="tab-one" type="checkbox" name="tabs">
                      <label for="tab-one" class="group_name">自分</label>
@@ -44,8 +44,8 @@
 
       </div>
    </header>
-   <div class="calendar-area">
-      <nav class="nav-cal">
+   <div class="calendar-area" >
+      <nav class="nav-cal" id="cla">
          <ul id="cal" class="ul-cal">
 
          </ul>
@@ -54,53 +54,53 @@
    <div id="easyModal" class="modal">
       <div class="modal-content">
          <div class="modal-header">
-            <h1>Great job 🎉</h1>
+            <p>予定設定</p>
             <span class="modalClose">×</span>
          </div>
          <div class="modal-body" id="modal-text">
             <p>バイト先選択</p>
             <div class="cp_ipselect cp_sl04">
-               <select required>
-                  <option value="0" hidden>なし</option>
-                  <option value="1"></option>
-                  <option value="2">dog</option>
-                  <option value="3">rabbit</option>
-                  <option value="4">squirrel</option>
+               <select id="job" required>
+                  <option value="-1" hidden>なし</option>
                </select>
             </div>
             <p>タイトル</p>
             <div class="center_block">
-               <input type="text" id="name" class="input-area" id="title">
+               <input type="text" class="input-area" id="title">
             </div>
             <p>カラー選択</p>
             <div class="cp_ipselect cp_sl04">
             <!-- TODO: 色の見本を表示できるようにする -->
                <select  id="color-pic" required>
-                  <option value="" hidden>なし</option>
-                  <option value="#FF0000"style="color: #FF0000; display: inline;"><div style="color: #FF0000; display: inline;">●</div>aka</option>
-                  <option value="#FF3399"><div  style="color: #FF3399;display: inline;">&#9679;</div>　ピンク</option>
-                  <option value="#FF9100" ><div style="color: #FF9100;display: inline;">&#9679;</div>　オレンジ</option>
-                  <option value="#FFD400"><div  style="color: #FFD400;display: inline;">&#9679;</div>　イエロー</option>
-                  <option value="#008000"><div  style="color: #008000;display: inline;">&#9679;</div>　グリーン</option>
-                  <option value="#B2D235"><div  style="color: #B2D235;display: inline;">&#9679;</div>　イエローグリーン</option>
-                  <option value="#67A7CC"><div style="color: #67A7CC;display: inline;">&#9679;</div>　スカイブルー</option>
-                  <option value="#0067C0"><div style="color: #0067C0;display: inline;">&#9679;</div>　ブルー</option>
-                  <option value="#5F4894"><div style="color: #5F4894;display: inline;">&#9679;</div>　パープル</option>
-                  <option value="#717375"><div style="color: #717375;display: inline;">&#9679;</div>　グレー</option>
+                  <option value="000000" id="jobco" hidden>なし</option>
+                  <option value="FF0000"style="color: #FF0000; display: inline;"><div style="color: #FF0000; display: inline;">●</div>aka</option>
+                  <option value="FF3399"><div  style="color: #FF3399;display: inline;">&#9679;</div>　ピンク</option>
+                  <option value="FF9100" ><div style="color: #FF9100;display: inline;">&#9679;</div>　オレンジ</option>
+                  <option value="FFD400"><div  style="color: #FFD400;display: inline;">&#9679;</div>　イエロー</option>
+                  <option value="008000"><div  style="color: #008000;display: inline;">&#9679;</div>　グリーン</option>
+                  <option value="B2D235"><div  style="color: #B2D235;display: inline;">&#9679;</div>　イエローグリーン</option>
+                  <option value="67A7CC"><div style="color: #67A7CC;display: inline;">&#9679;</div>　スカイブルー</option>
+                  <option value="0067C0"><div style="color: #0067C0;display: inline;">&#9679;</div>　ブルー</option>
+                  <option value="5F4894"><div style="color: #5F4894;display: inline;">&#9679;</div>　パープル</option>
+                  <option value="717375"><div style="color: #717375;display: inline;">&#9679;</div>　グレー</option>
                </select>
             </div>
             <p>開始日時</p>
             <div class="parent">
-               <input type="date" name="start" class="herf-input-area" id="start-day">
-               <input type="time" name="smp01" min="00:00" max="24:30" class="herf-input-area" id="start-time">
+               <input type="date" name="start" class="date herf-input-area" id="start-day">
+               <input type="time" name="smp01" min="00:00" max="24:00" class="time herf-input-area" id="start-time">
             </div>
             <p>終了日時</p>
             <div class="parent">
-               <input type="date" name="birthday" class="herf-input-area" id="end-day">
-               <input type="time" name="smp01" min="00:00" max="24:30" class="herf-input-area" id="end-time">
+               <input type="date" name="birthday" class="date herf-input-area" id="end-day">
+               <input type="time" name="smp01" min="00:00" max="24:00" class="time herf-input-area" id="end-time">
             </div>
-
-            <button id="send-schedule">作成</button>
+            <p>公開設定</p>
+            <div class="p-radio">
+            <input type="radio" name="q1" value="はい" id="nopr" checked> 公開する
+            <input type="radio" name="q1" value="いいえ" > 非公開
+         </div>
+            <button id="send-schedule" onclick="onsend()">作成</button>
          </div>
       </div>
    </div>

@@ -14,7 +14,7 @@ li{
   list-style: none;
 }
 
-input[type=radio] {
+.dradio {
   display: none;
 }
 
@@ -74,7 +74,7 @@ input[type=radio] {
   opacity: 0;
 }
 
-input[type=radio]:checked+.radio_ci:before {
+.dradio:checked+.radio_ci:before {
   opacity: 1;
   /* 要素を表示する */
 }
@@ -82,10 +82,12 @@ input[type=radio]:checked+.radio_ci:before {
 
 .header {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
   height: 3em;
-  padding: 2%;
+  padding: 0.5em;
+  z-index: 100;
   background: #FF9100;
 }
 
@@ -290,12 +292,29 @@ input[type=radio]:checked+.radio_ci:before {
   display: flex;
 }
 
+.sticky-head {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+.sticky-li {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 4em;
+  z-index: 80;
+  padding: 0.2em;
+ 
+}
+
 .nav-cal{
   width: 100%;
+
 }
 .days-area{
   width: 100%;
-  height: 4em;
+  padding-top: 0.2em;
+  padding-bottom: 2em;
+  max-height: 10000000em;
 
   border-top: solid #cccccc92 0.1em;
 }
@@ -317,6 +336,7 @@ input[type=radio]:checked+.radio_ci:before {
   padding-top: 0.3em;
   margin-bottom: 1em;
   font-size: 1em;
+  margin-bottom: 1em;
 }
 
 .sun{
@@ -330,7 +350,7 @@ input[type=radio]:checked+.radio_ci:before {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 95;
   left: 0;
   top: 0;
   height: 100%;
@@ -346,6 +366,7 @@ input[type=radio]:checked+.radio_ci:before {
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
   animation-name: modalopen;
   animation-duration: 1s;
+
 }
 
 @keyframes modalopen {
@@ -373,15 +394,20 @@ input[type=radio]:checked+.radio_ci:before {
 }
 
 .modal-body {
+  
   padding: 10px 20px;
   color: black;
 }
 
+.modal-body p {
+
+  color: black;
+}
 
 .cp_ipselect {
 	overflow: hidden;
 	width: 90%;
-	margin: 2em auto;
+	margin: 1em auto;
 	text-align: center;
 }
 .cp_ipselect select {
@@ -404,7 +430,7 @@ input[type=radio]:checked+.radio_ci:before {
 .cp_ipselect.cp_sl04 {
 	position: relative;
 	border-radius: 2px;
-	border: 2px solid #da3c41;
+	border: 2px solid #c7c7c7;
   border-radius: 50px;
 	background: #ffffff;
 }
@@ -418,10 +444,59 @@ input[type=radio]:checked+.radio_ci:before {
 	content: '';
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
-	border-top: 6px solid #da3c41;
+	border-top: 6px solid #c7c7c7;
 	pointer-events: none;
 }
 .cp_ipselect.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
-	color: #da3c41;
+	color: #c7c7c7;
+}
+
+.center_block{
+ text-align: center;
+}
+
+.input-area{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 2em;
+  border-radius: 2px;
+	border: 2px solid #c7c7c7;
+  border-radius: 50px;
+}
+
+.schedule-text{
+  margin-left: 1em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  font-size: 0.95em;
+}
+
+.parent{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.herf-input-area{
+  
+}
+
+.date{
+  width: 45%;
+  height: 1%;
+  font-size: 0.9em;
+}
+
+.time{
+  width: 30%;
+  height: 1%;
+  font-size: 0.9em;
+}
+
+.p-radio{
+  text-align: center;
 }
