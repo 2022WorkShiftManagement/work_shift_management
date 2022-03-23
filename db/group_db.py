@@ -1,8 +1,6 @@
 import random
 import string
 
-import MySQLdb
-
 from db.connect_db import *
 
 
@@ -32,6 +30,7 @@ def create_group(uid, group_name):
 
 
 def select_group(gid):
+    check_existence_group()
     conn = get_select_connection()
     cur = conn.cursor()
     sql = '''SELECT jg.user_id, user_name, jg.group_id, ug.user_id as group_reader, group_name, group_string FROM joining_groups as jg
@@ -138,7 +137,6 @@ def remove_member(uid, gid):
 
 
 def delete_group_db(gid):
-    check_existence_group()
     conn = get_update_connection()
     cur = conn.cursor()
     sql = 'DELETE FROM user_groups WHERE group_string=%s'
@@ -172,7 +170,7 @@ def update_group(gid, gname):
 
 def check_existence_group():
     conn = get_select_connection()
-    cur = conn.cursol()
+    cur = conn.cursor()
     sql = '''SELECT group_string FROM user_groups as ug
             LEFT OUTER JOIN joining_groups as jg ON jg.group_id = ug.group_id
             WHERE joining_group_id is null 
