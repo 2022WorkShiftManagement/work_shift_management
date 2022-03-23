@@ -16,9 +16,19 @@ $(function(){
         group_name_def = $("#group_name_text").val();
         const postdata = new FormData();
         postdata.append("new_group_name", group_name_def)
-        const XHR = new XMLHttpRequest();
-        XHR.open("POST", location.href, true)
-        XHR.send(postdata)
+        fetch(location.href, {
+            method: 'POST',
+            body: postdata
+        }).then((response) => {
+            if(!response.ok) {
+                console.log('error!');
+            }
+            return response.ok;
+        }).then((data)  => {
+            console.log(data);
+        }).catch((error) => {
+            console.log(error);
+        });
     })
 
     $("#cancel_button").on("click", () => {
