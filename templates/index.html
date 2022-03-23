@@ -11,6 +11,7 @@
 <body>
 <div>
     <h1>ジョビカレンダー</h1>
+    <p id="error">{% if error %}{{error}}{% endif %}</p>
     <form action="{{url_for('login.home_post_page')}}" method="post">
         <ul>
             <li>

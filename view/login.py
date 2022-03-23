@@ -11,10 +11,14 @@ def home_post_page():
     mail = request.form.get('mail')
     pw = request.form.get('pw')
 
-    if uf.mail_validation(mail) and uf.pw_validation(pw):
-        user_id = login_db.login(mail, pw)
+    if not uf.mail_validation(mail):
+        return redirect(url_for('index', error='メールを正しく入力してください'))
+
+    elif not uf.pw_validation(pw):
+        return redirect(url_for('index', error='パスワードを正しく入力してください'))
+
     else:
-        return redirect('/')
+        user_id = login_db.login(mail, pw)
 
     if user_id is None:
         return redirect("/")
