@@ -1,9 +1,5 @@
-import random
-import string
-
 from db.connect_db import *
-
-
+from function.random_string import randomstring
 def create_group(uid, group_name):
     random_string = randomstring(16)
     conn = get_update_connection()
@@ -187,7 +183,3 @@ def check_existence_group():
         conn.close()
     return
 
-
-def randomstring(n):
-    random_string = [random.choice(string.ascii_letters + string.digits) for i in range(n)]
-    return ''.join(random_string)
