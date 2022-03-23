@@ -16,10 +16,9 @@ def home_post_page():
 
     elif not uf.pw_validation(pw):
         return redirect(url_for('index', error='パスワードを正しく入力してください'))
-
-    else:
-        user_id = login_db.login(mail, pw)
-
+      
+    user_id = login_db.login(mail, pw)
+        
     if user_id is None:
         return redirect("/")
 
