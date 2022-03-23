@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block title %}
+ホームテスト用【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<!--<link rel="stylesheet" href="{{url_for('static', filename='css/add_job.css')}}">-->
+{% endblock %}
+
+{% block back_page %}
+<a href="{{url_for('create_account.confirm_account_page')}}">＜</a>
+{% endblock %}
+
+{% block header %}
+ログインテスト用ページ
+{% endblock %}
+
+{% block main %}
+<main>
 <h1>ログイン成功</h1>
-</body>
-</html>
+</main>
+{% endblock %}
