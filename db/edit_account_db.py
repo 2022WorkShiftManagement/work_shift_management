@@ -1,15 +1,16 @@
 import random
 import string
+import MySQLdb
 
 from function import user_function
 
-import connect_db
+from db import connect_db
 
 
 # アカウントの取得
 def search_account(user_id):
     conn = connect_db.get_select_connection()
-    cur = conn.cursor()
+    cur = conn.cursor(MySQLdb.cursors.DictCursor)
 
     sql = 'select user_id, mail, user_name from users where user_id = %s'
 
