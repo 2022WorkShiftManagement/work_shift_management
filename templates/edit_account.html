@@ -19,32 +19,38 @@
 {% block main %}
 <main>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
-    <form action="" method="post">
+    <form action="{{url_for('edit_account.update_account')}}" method="post" onsubmit="return delete_check()">
         <ul>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="user_name" id="user_name" value="{{account['user_name']}}">
+                    <input class="ef" type="text" name="user_name" id="user_name" value="{{account['user_name']}}" required>
                     <label for="user_name">UserName</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="current_pw" id="current_pw">
+                    <input class="ef" type="text" id="mail" value="{{account['mail']}}" disabled>
+                    <label for="mail">Mail</label>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="password" name="current_pw" id="current_pw" required>
                     <label for="current_pw">CurrentPW</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="new_pw" id="new_pw">
+                    <input class="ef" type="password" name="new_pw" id="new_pw" required>
                     <label for="new_pw">NewPW</label>
                     <span class="focus_line"></span>
                 </div>
             </li>
             <li>
                 <div class="input_text">
-                    <input class="ef" type="text" name="re_new_pw" id="re_new_pw">
+                    <input class="ef" type="password" name="re_new_pw" id="re_new_pw" required>
                     <label for="re_new_pw">ReNewPW</label>
                     <span class="focus_line"></span>
                 </div>
@@ -69,6 +75,10 @@
             color_box.style.backgroundColor = "#" + color.value;
         });
     });
+
+    const delete_check = () => {
+        return window.confirm(`アカウントを編集しますか？`);
+    }
 </script>
 {% endblock %}
 
