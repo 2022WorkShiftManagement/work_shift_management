@@ -9,7 +9,7 @@ body {
     display: flex;
     margin: 0;
     height: 100vh;
-    background-color: #66ABD9;
+    background-color: #C5E1EC;
     justify-content: center;
     align-items: center;
 }
@@ -20,7 +20,8 @@ body > div {
 
 h1 {
     text-align: center;
-    color: #FFFFFF;
+    color: #303030;
+    text-shadow: #FFFFFF 2px 2px;
 }
 
 form {
