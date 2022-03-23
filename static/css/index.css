@@ -18,10 +18,30 @@ body > div {
     width: 100%;
 }
 
-h1 {
+.h1-box {
     text-align: center;
+}
+
+h1 {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 10px #FFFFFF;
+    border: dashed 5px #303030;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 10px;
     color: #FF9100;
-    text-shadow: #303030 2px 2px;
+}
+
+.calendar {
+    color: #FFFFFF;
+}
+
+.h1_shadow {
+    text-shadow: 1px 0 0 #303030,
+    0 1px 0 #303030,
+    -1px 0 0 #303030,
+    0 -1px 0 #303030,
+    3px 3px 0 #303030;
 }
 
 form {
@@ -122,9 +142,9 @@ form > div {
 }
 
 a {
-    color: #303030;
+    color: #FF9100;
 }
 
 a:hover {
-    color: #FF9100;
+    color: #ffb052;
 }
