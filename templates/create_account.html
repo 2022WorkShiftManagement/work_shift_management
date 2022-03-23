@@ -1,18 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>アカウント作成</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/create_account.css')}}">
-</head>
-<body>
-<header>
-    <a href="{{url_for('index')}}">＜</a>
-    <h2>アカウント作成</h2>
-</header>
+{% extends "layout.html" %}
+
+{% block title %}
+アカウント作成【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/create_account.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="/">＜</a>
+{% endblock %}
+
+{% block header %}
+アカウント作成
+{% endblock %}
+
+{% block main %}
 <main>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
 
@@ -52,7 +56,9 @@
         </div>
     </form>
 </main>
+{% endblock %}
 
+{% block js %}
 <script>
     // パスワードの確認
     function checkPw() {
@@ -62,11 +68,12 @@
         if (pw.value !== re_pw.value) {
             const error = document.getElementById('error');
             error.textContent = 'パスワードが等しくありません。' ;
+            pw.value = '';
+            re_pw.value = '';
             return false;
         }
 
         return true;
     }
 </script>
-</body>
-</html>
+{% endblock %}
