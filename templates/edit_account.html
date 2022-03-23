@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+アカウント編集【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/add_job.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="#">＜</a>
+{% endblock %}
+
+{% block header %}
+アカウント編集
+{% endblock %}
+
+{% block main %}
+<main>
+    <p id="error">{% if error %}{{error}}{% endif %}</p>
+    <form action="{{url_for('edit_account.update_account')}}" method="post" onsubmit="return delete_check()">
+        <ul>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" name="user_name" id="user_name" value="{{account['user_name']}}" required>
+                    <label for="user_name">UserName</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="text" id="mail" value="{{account['mail']}}" disabled>
+                    <label for="mail">Mail</label>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="password" name="current_pw" id="current_pw" required>
+                    <label for="current_pw">CurrentPW</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="password" name="new_pw" id="new_pw" required>
+                    <label for="new_pw">NewPW</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+            <li>
+                <div class="input_text">
+                    <input class="ef" type="password" name="re_new_pw" id="re_new_pw" required>
+                    <label for="re_new_pw">ReNewPW</label>
+                    <span class="focus_line"></span>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <input type="submit" value="次へ">
+        </div>
+    </form>
+</main>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const color_box = document.getElementById('color_box');
+        const color = document.getElementById('color');
+
+        color_box.style.backgroundColor = "#" + color.value;
+
+        color.addEventListener('change', () => {
+            color_box.style.backgroundColor = "#" + color.value;
+        });
+    });
+
+    const delete_check = () => {
+        return window.confirm(`アカウントを編集しますか？`);
+    }
+</script>
+{% endblock %}
+
+
