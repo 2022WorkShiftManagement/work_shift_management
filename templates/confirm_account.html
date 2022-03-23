@@ -1,18 +1,22 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>アカウント作成</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/confirm_account.css')}}">
-</head>
-<body>
-<header>
-    <a href="{{url_for('create_account.create_account_page')}}">＜</a>
-    <h2>アカウント作成</h2>
-</header>
+{% extends "layout.html" %}
+
+{% block title %}
+アカウント情報【ジョビカレンダー】
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/confirm_account.css')}}">
+{% endblock %}
+
+{% block back_page %}
+<a href="{{url_for('create_account.create_account_page')}}">＜</a>
+{% endblock %}
+
+{% block header %}
+アカウント情報
+{% endblock %}
+
+{% block main %}
 <main>
     <p></p>
     <dl>
@@ -23,5 +27,4 @@
     </dl>
     <div><a href="{{url_for('create_account.insert_account_page')}}">作成する</a></div>
 </main>
-</body>
-</html>
+{% endblock %}
