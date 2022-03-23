@@ -13,22 +13,28 @@ $(function(){
     });
 
     $("#submit_button").on("click", () => {
-        group_name_def = $("#group_name_text").val();
-        const postdata = new FormData();
-        postdata.append("new_group_name", group_name_def)
-        fetch(location.href, {
-            method: 'POST',
-            body: postdata
-        }).then((response) => {
-            if(!response.ok) {
-                console.log('error!');
+        if(group_name_def != $("#group_name_text").val()) {
+            group_name_def = $("#group_name_text").val();
+            const postdata = new FormData();
+            postdata.append("new_group_name", group_name_def)
+            for (let i=0; i<10; i++) {
+                fetch(location.href, {
+                    method: 'POST',
+                    body: postdata
+                }).then((response) => {
+                    if(!response.ok) {
+                        console.log('error!');
+                    } else {
+                        console.log('success');
+                        return response.ok;
+                    }
+                }).then((data)  => {
+                    console.log(data);
+                }).catch((error) => {
+                    console.log(error);
+                });
             }
-            return response.ok;
-        }).then((data)  => {
-            console.log(data);
-        }).catch((error) => {
-            console.log(error);
-        });
+        }
     })
 
     $("#cancel_button").on("click", () => {
