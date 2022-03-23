@@ -11,7 +11,6 @@ def top_page():
     pw = request.form.get('pw')
 
     user_id = login_db.login(mail, pw)
-    print(user_id)
     if user_id is None:
         return redirect("/")
 
