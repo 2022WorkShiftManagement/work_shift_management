@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from db import add_job_db
+
 from function.color import get_color
+
 
 add_job = Blueprint('add_job', __name__)
 
@@ -74,9 +76,3 @@ def insert_job():
                 error='登録に失敗しました。'
             )
         )
-
-
-# シフト表示画面（仮）
-@add_job.route("/home")
-def home():
-    return "test"
