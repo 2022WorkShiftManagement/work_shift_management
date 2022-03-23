@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    グループ作成｜Jyobi-Calendar
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_group.css') }}">
+{% endblock %}
+
+{% block back_page %}
+    <a href="#" onclick="window.history.back(); return false;">＜</a>
+{% endblock %}
+
+{% block header %}
+    グループ作成
+{% endblock %}
+
+{% block main %}
+    <main>
+        {% if alert_message %}
+            <script>
+                alert({{ alert_message }})
+            </script>
+        {% else %}
+            <form action="{{ url_for('group.create_group_form') }}" method="post" autocomplete="off">
+                <ul>
+                    <li>
+                        <div class="input_text">
+                            <input class="ef" type="text" name="group_name" id="group_name" placeholder=" " required>
+                            <label for="name">GroupName</label>
+                            <span class="focus_line"></span>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <input type="submit" value="作成">
+                </div>
+            </form>
+        {% endif %}
+    </main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

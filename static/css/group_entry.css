@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+body {
+    height: 100vh;
+    font-size: 1.2rem;
+}
+
+main {
+    font-size: 1.2rem;
+    min-height: 85vh;
+    display:flex;
+    text-align: center;
+    justify-content:center;
+    align-items:center;
+}
+
+div {
+    display: inline-grid;
+    height: 30vh;
+    width: 80vw;
+    background-color: rgba(170, 170, 170, 0.8);
+    align-items:center;
+    border-radius: 40px;
+}
+
+.entry_button {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-appearance: none;
+    color: #FFFFFF;
+    background-color: #303030;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 100vh;
+    border:none;
+}
