@@ -12,7 +12,7 @@ from db.group_db import *
 group = Blueprint('group', __name__, url_prefix='/group')
 
 
-@group.route("/newGroup", methods=['GET', 'POST'])
+@group.route("/new_group", methods=['GET', 'POST'])
 def create_group_form():
     if "user" not in session:  # セッションの有無
         return redirect("/")
@@ -50,7 +50,7 @@ def group_detail(gid):
         return render_template('group_detail.html', alert_message="グループが存在しません")
 
 
-@group.route('/entry/<string:gid>')
+@group.route('/entry_group/<string:gid>')
 def group_entry(gid):
     if "user" not in session:
         return redirect("/")
