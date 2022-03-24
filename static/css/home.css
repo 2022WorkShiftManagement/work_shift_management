@@ -408,13 +408,9 @@ li{
 .modal-body {
   
   padding: 10px 20px;
-  color: black;
+
 }
 
-.modal-body p {
-
-  color: black;
-}
 
 .cp_ipselect {
 	overflow: hidden;

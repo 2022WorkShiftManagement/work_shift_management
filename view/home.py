@@ -8,6 +8,8 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route('/')
 def home_index():
+    if "user" not in session:
+        return redirect("/")
     return render_template('home.html',user_id=session['user'][0])
 
 
@@ -17,6 +19,10 @@ def get_group():
         return redirect("/")
     user_id = session['user']# userID
     join_groups_table = get_join_groups(user_id)
+    print(join_groups_table)
+    if join_groups_table ==():
+        return
+    
     now_group = join_groups_table[0][2]
     groups = {'items': []}
     group_info = {

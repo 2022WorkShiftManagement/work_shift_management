@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
    modal = document.getElementById('easyModal');
    const buttonClose = document.getElementsByClassName('modalClose')[0];
-
+   const color_pic = document.getElementById('color-pic')
    //３ヶ月分のカレンダー
    create_calendar(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1))
    //モーダルコンテンツ以外がクリックされた時
@@ -46,9 +46,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
       setgroupData(data)
       //savedUserData = data;
    }).catch((e) => {
-      let link = location.href;
-      location.href = link.replace("/home/" + location.hash, "/");
+  
    });
+
+   color_pic.addEventListener('change',()=>{
+      document.getElementById('color-sample').style.color = '#'+color_pic.value
+   })
 
    //
    let linka = location.href;
@@ -279,8 +282,10 @@ function setgroupData(data) {
 function setjobData(data) {
    const job_list = document.getElementById('job')
    const job_colorlist = []
-
-   job_list.innerHTML += '<option value="-1" hidden>なし</option>'
+   const job_def =  document.createElement('option')
+   job_def.value = -1
+   job_def.innerText = 'なし'
+   job_list.appendChild(job_def)
    for (let i = 0; i < data.items.length; i++) {
       const job_name = document.createElement('option')
       job_name.value = data.items[i]['job_id']
@@ -294,7 +299,7 @@ function setjobData(data) {
          document.getElementById('color-pic').disabled = false;
          document.getElementById('jobco').value = '000000'
          document.getElementById('jobco').innerText = 'なし'
-
+         document.getElementById('color-sample').style.color = '#FFFFFF'
          document.getElementById('title').disabled = false;
          document.getElementById('title').value = ""
 
@@ -304,8 +309,9 @@ function setjobData(data) {
          document.getElementById('jobco').innerText = job_colorlist[job_list.selectedIndex - 1]
          document.getElementById('title').disabled = true;
          document.getElementById('title').value = job_list.options[job_list.selectedIndex].text
-
+         document.getElementById('color-sample').style.color = '#'+job_colorlist[job_list.selectedIndex - 1]
       }
+      
    })
 }
 
