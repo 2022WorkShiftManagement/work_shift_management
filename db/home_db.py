@@ -72,7 +72,7 @@ def get_my_schedules(user_id,sy,sm,ey,em):
     
 
 def get_jobs(user_id):
-    conn = get_update_connection()
+    conn = get_select_connection()
     cur = conn.cursor()
     cur.execute('SELECT job_id, job_name, color_code FROM job_infos where user_id = %s',(user_id,))
     
@@ -82,8 +82,34 @@ def get_jobs(user_id):
     
     return job_list
     
+
+def get_group_schedules(user_id,group_id,sy,sm,ey,em):
+    conn = get_select_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT user_id from joining_groups where group_id = %s',(group_id,))
+    user_l = cur.fetchall()
     
+    flg =False
+    sql = ''
+    start_date = datetime.date(int(sy), int(sm), 1)
+    end_date = datetime.date(int(ey), int(em), 1)
+    for user in user_l:
+        if user[0] ==user_id:
+            flg =True
+        sql += 'or schedules.user_id = ' +str(user[0]) + ' and private_flg = 0 '
+        
+    cur.close()
+    cur = conn.cursor()
+    cur.execute('SELECT users.user_name,schedule_title,start_time,end_time,job_infos.job_name,users.user_id FROM schedules LEFT OUTER JOIN job_infos on schedules.job_id = job_infos.job_id left outer join users on schedules.user_id = users.user_id where schedules.user_id = %s '+ sql +'and start_time > %s and end_time < %s and schedules.delete_flg = false ORDER BY start_time '
+                 ,(user_id,start_date,end_date,))
     
+    schedule_list = cur.fetchall();
+    cur.close()
+    conn.close()
+    
+    return  schedule_list
+                    
+            
     
     
 

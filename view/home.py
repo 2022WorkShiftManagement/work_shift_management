@@ -1,6 +1,6 @@
 from sre_constants import SUCCESS
 from types import resolve_bases
-from db.home_db import get_jobs, get_join_groups, get_my_schedules, set_schedule
+from db.home_db import get_group_schedules, get_jobs, get_join_groups, get_my_schedules, set_schedule
 from flask import Flask, Blueprint, render_template, request, redirect, jsonify,session
 
 home = Blueprint('home', __name__, url_prefix='/home')
@@ -124,8 +124,48 @@ def get_joblist():
         }
         json_jobs['items'].append(job_info)
         
-    
     return json_jobs
         
+
+@home.route('/get-group-schedule', methods=["POST"])
+def get_group_schedule():
+    if "user" not in session:
+        return jsonify({"values":"BAD SESSION"})
+    group_id = request.form.get('group_id')
+    start_m = request.form.get('start-m')
+    start_y = request.form.get('start-y')
+    end_m = request.form.get('end-m')
+    end_y = request.form.get('end-y')
+
+    
+    schedules = get_group_schedules(session['user'],group_id,start_y,start_m,end_y,end_m)
+    json_schedule = {'items': []}
+    
+    for schedule_tpl in schedules:
+        if schedule_tpl[0] is None:
+            print(schedule_tpl[3])
+            group_info = {
+            'title': schedule_tpl[1],
+            'name': schedule_tpl[0],
+            'job_name': schedule_tpl[4],
+            'start_time': schedule_tpl[2].strftime('%Y-%m-%dT%H:%M:00'),
+            'end_time':schedule_tpl[3].strftime('%Y-%m-%dT%H:%M:00')
+            }
+            
+        else:
+            group_info = {
+                'title': schedule_tpl[1],
+                'user_id':schedule_tpl[5],
+                'name': schedule_tpl[0],
+                'job_name': schedule_tpl[4],
+                'start_time': schedule_tpl[2].strftime('%Y-%m-%dT%H:%M:00'),
+                'end_time':schedule_tpl[3].strftime('%Y-%m-%dT%H:%M:00')
+                }
+        json_schedule['items'].append(group_info)
+    
+    return json_schedule
+    
+    
+    
     
     
