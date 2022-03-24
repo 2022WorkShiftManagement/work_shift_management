@@ -4,7 +4,6 @@ from view.login import login
 from view.group import group
 from view.job import job
 from view.edit_account import edit_account
-from view.edit_job import edit_job
 from view.home import home
 
 
