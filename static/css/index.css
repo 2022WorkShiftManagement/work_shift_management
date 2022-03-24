@@ -150,5 +150,5 @@ a:hover {
 }
 
 input:-webkit-autofill {
-    box-shadow: 0 0 0 1000px #C5E1EC inset;
+    transition: background-color 5000s ease-in-out 0s !important;
 }
