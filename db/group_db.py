@@ -1,5 +1,7 @@
 from db.connect_db import *
 from function.random_string import randomstring
+
+
 def create_group(uid, group_name):
     random_string = randomstring(16)
     conn = get_update_connection()
@@ -32,7 +34,7 @@ def select_group(gid):
     sql = '''SELECT jg.user_id, user_name, jg.group_id, ug.user_id as group_reader, group_name, group_string FROM joining_groups as jg
             INNER JOIN users as us ON us.user_id = jg.user_id
             INNER JOIN user_groups as ug ON ug.group_id = jg.group_id
-            WHERE us.delete_flg=0 AND ug.group_string=%s'''
+            WHERE us.delete_flg = 0 AND ug.group_string = %s'''
     try:
         cur.execute(sql, (gid,))
         group_details = cur.fetchall()
@@ -91,11 +93,11 @@ def select_member_count(gid):
 def join_group(uid, gid):
     conn = get_update_connection()
     cur = conn.cursor()
-    sql = '''INSERT INTO joining_groups
-            VALUES(null, %s, (
+    sql = '''INSERT IGNORE INTO joining_groups
+            VALUES(%s, (
                 SELECT group_id FROM user_groups
-                WHERE group_string = %s
-            ))'''
+                WHERE group_string = %s)
+                )'''
     try:
         cur.execute(sql, (uid, gid,))
         conn.commit()
