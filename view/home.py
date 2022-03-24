@@ -80,7 +80,7 @@ def get_schedule():
     schedules = get_my_schedules(session['user'],start_y,start_m,end_y,end_m)
     
     if schedules is None:
-        return 
+        return jsonify({"values":"No DATA"})
     
     json_schedule = {'items': []}
     
@@ -116,6 +116,9 @@ def get_joblist():
     
     json_jobs = {'items': []}
     
+    if job_tpl is None:
+        return jsonify({"values":"No DATA"})
+    
     for job_tpl in job_list:
         job_info = {
             'job_id':job_tpl[0],
@@ -140,6 +143,9 @@ def get_group_schedule():
     
     schedules = get_group_schedules(session['user'],group_id,start_y,start_m,end_y,end_m)
     json_schedule = {'items': []}
+    
+    if schedule_tpl is None:
+        return jsonify({"values":"No DATA"})
     
     for schedule_tpl in schedules:
         if schedule_tpl[0] is None:

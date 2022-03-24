@@ -94,6 +94,9 @@ def get_group_schedules(user_id,group_id,sy,sm,ey,em):
     start_date = datetime.date(int(sy), int(sm), 1)
     end_date = datetime.date(int(ey), int(em), 1)
     for user in user_l:
+        if user is None:
+            return
+        
         if user[0] ==user_id:
             flg =True
         sql += 'or schedules.user_id = ' +str(user[0]) + ' and private_flg = 0 '
