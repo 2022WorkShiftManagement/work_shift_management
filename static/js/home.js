@@ -135,7 +135,7 @@ function groupChange() {
       calmode = 1
       set_schedule(new Date(nowDate.getFullYear(), nowDate.getMonth() - 2, 1), new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 31))
    }
-
+   //BUG:  指定の位置までスクロールしてくれない
    document.documentElement.scrollTop = document.getElementById(formatDate(nowDate)).getBoundingClientRect().top + window.pageYOffset + 10
 
 
@@ -147,8 +147,8 @@ function create_calendar(date) {
       const month_date = getMonthDaycount(date.getFullYear(), Number(date.getMonth()) + (mm))
       const ul = document.getElementById('cal');
       const mounth_li = document.createElement('li')
-      mounth_li.style.backgroundColor = '#27C5FF'
-      mounth_li.style.color = '#FDFDFD'
+      mounth_li.style.backgroundColor = '#5195e8'
+      mounth_li.style.color = '#fdfdfdgit'
       mounth_li.style.textAlign = 'center'
       mounth_li.id = (`${date.getFullYear()}${('00' + (date.getMonth() +(mm))).slice(-2)}`)
       mounth_li.innerText = `${date.getFullYear()}年　${Number(date.getMonth()) + (mm)}月`
@@ -185,7 +185,7 @@ function add_calendar(date, front_flg) {
 
    const month_date = getMonthDaycount(date.getFullYear(), Number(date.getMonth() + 1))
    const mounth_li = document.createElement('li')
-   mounth_li.style.backgroundColor = '#27C5FF'
+   mounth_li.style.backgroundColor = '#5195e8'
    mounth_li.style.color = '#FDFDFD'
    mounth_li.style.textAlign = 'center'
    mounth_li.id = (`${date.getFullYear()}${('00' + (date.getMonth() +1)).slice(-2)}`)
