@@ -17,9 +17,9 @@ def get_join_groups(id: str):
     conn = get_select_connection()
     cur = conn.cursor()
 
-    cur.execute('''SELECT a.user_id,u.user_name, b.group_id, c.group_name FROM joining_groups AS a 
+    cur.execute('''SELECT a.user_id,u.user_name, b.group_id, c.group_name,c.group_string FROM joining_groups AS a 
     INNER JOIN (SELECT group_id FROM joining_groups WHERE user_id = (%s)) AS b ON b.group_id = a.group_id LEFT
-    OUTER JOIN user_groups as c on c.group_id = b.group_id LEFT OUTER JOIN users as u on u.user_id = a.user_id ORDER BY group_id''', (1,))
+    OUTER JOIN user_groups as c on c.group_id = b.group_id LEFT OUTER JOIN users as u on u.user_id = a.user_id ORDER BY group_id''', (id,))
 
     group_list = cur.fetchall()
     cur.close()
@@ -93,24 +93,25 @@ def get_group_schedules(user_id,group_id,sy,sm,ey,em):
     sql = ''
     start_date = datetime.date(int(sy), int(sm), 1)
     end_date = datetime.date(int(ey), int(em), 1)
+    
     for user in user_l:
-        if user is None:
-            return
-        
-        if user[0] ==user_id:
+        if user[0] == user_id[0]:
             flg =True
         sql += 'or schedules.user_id = ' +str(user[0]) + ' and private_flg = 0 '
         
-    cur.close()
-    cur = conn.cursor()
-    cur.execute('SELECT users.user_name,schedule_title,start_time,end_time,job_infos.job_name,users.user_id FROM schedules LEFT OUTER JOIN job_infos on schedules.job_id = job_infos.job_id left outer join users on schedules.user_id = users.user_id where schedules.user_id = %s '+ sql +'and start_time > %s and end_time < %s and schedules.delete_flg = false ORDER BY start_time '
-                 ,(user_id,start_date,end_date,))
+    if flg:
+        
+        cur.close()
+        cur = conn.cursor()
+        cur.execute('SELECT users.user_name,schedule_title,start_time,end_time,job_infos.job_name,users.user_id FROM schedules LEFT OUTER JOIN job_infos on schedules.job_id = job_infos.job_id left outer join users on schedules.user_id = users.user_id where start_time > %s and end_time < %s and schedules.delete_flg = false ' + sql +' ORDER BY start_time '
+                 ,(start_date,end_date,))
     
-    schedule_list = cur.fetchall();
-    cur.close()
-    conn.close()
-    
-    return  schedule_list
+        schedule_list = cur.fetchall();
+        cur.close()
+        conn.close()
+        return  schedule_list
+    else:
+        return
                     
             
     

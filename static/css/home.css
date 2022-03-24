@@ -68,7 +68,7 @@ li{
   /* ボックスの横幅を指定する */
   height: 0.4em;
   /* ボックスの高さを指定する */
-  background: #FF9100;
+  background: #C5E1EC;
   border-radius: 50%;
   /* ボックスの角丸を指定する */
   opacity: 0;
@@ -76,7 +76,6 @@ li{
 
 .dradio:checked+.radio_ci:before {
   opacity: 1;
-  /* 要素を表示する */
 }
 
 
@@ -88,7 +87,7 @@ li{
   height: 3em;
   padding: 0.5em;
   z-index: 100;
-  background: #FF9100;
+  background: #C5E1EC;
 }
 
 .logo {

@@ -15,8 +15,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
    //３ヶ月分のカレンダー
    create_calendar(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1))
-
-
    //モーダルコンテンツ以外がクリックされた時
    addEventListener('click', outsideClose);
    //[閉じる]がクリックされた時
@@ -118,26 +116,28 @@ function groupChange() {
          selectedg = elements.item(i).id;
          //TODO:
       }
-
    }
+
    console.log(selectedg)
+
    if (selectedg == -1) {
       const ul = document.getElementById('cal');
       ul.innerHTML = ''
       create_calendar(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1))
       calmode = 0
       set_schedule(new Date(nowDate.getFullYear(), nowDate.getMonth() - 2, 1), new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 31))
-
+      document.getElementById('grouplink').href = '#'
    } else {
       const ul = document.getElementById('cal');
       ul.innerHTML = ''
+      //親からgroup_stringを取得
+      document.getElementById('grouplink').href = "/detail/" + document.getElementById(selectedg).parentNode.id
       create_calendar(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1))
       calmode = 1
       set_schedule(new Date(nowDate.getFullYear(), nowDate.getMonth() - 2, 1), new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 31))
    }
    //BUG:  指定の位置までスクロールしてくれない
    document.documentElement.scrollTop = document.getElementById(formatDate(nowDate)).getBoundingClientRect().top + window.pageYOffset + 10
-
 
 }
 
@@ -148,7 +148,7 @@ function create_calendar(date) {
       const ul = document.getElementById('cal');
       const mounth_li = document.createElement('li')
       mounth_li.style.backgroundColor = '#5195e8'
-      mounth_li.style.color = '#fdfdfdgit'
+      mounth_li.style.color = '#fdfdfd'
       mounth_li.style.textAlign = 'center'
       mounth_li.id = (`${date.getFullYear()}${('00' + (date.getMonth() +(mm))).slice(-2)}`)
       mounth_li.innerText = `${date.getFullYear()}年　${Number(date.getMonth()) + (mm)}月`
@@ -229,8 +229,7 @@ function setgroupData(data) {
    data.items.forEach(element => {
       const group_tab = document.createElement('div')
       group_tab.className = 'cp_actab'
-
-
+      group_tab.id = element.group_string
       const select_radio = document.createElement('input')
       select_radio.id = element.group_id
       select_radio.setAttribute('name', 'group')
@@ -335,12 +334,9 @@ function create_popup(id) {
 
 }
 
-
 function modalClose() {
    modal.style.display = 'none';
 };
-
-
 
 function outsideClose(e) {
    if (e.target == modal) {
@@ -468,7 +464,7 @@ function onsend() {
       local_set_schedule(start_date_time, end_date_time, title.value, color.value)
    } else {
       const name = '自分'
-      local_set_schedule(start_date_time, end_date_time, title.value, color.value, name)
+      local_set_schedule(start_date_time, end_date_time, title.value, current_id, name)
    }
 
    //モーダルを削除する
@@ -478,9 +474,6 @@ function onsend() {
 function set_schedule(start_date, end_date) {
    //TODO: バックエンドへPOSTする
    if (calmode == 0) {
-
-
-
       console.log(start_date.getMonth())
       const setData = {
          'start-y': start_date.getFullYear(),
@@ -518,7 +511,6 @@ function set_schedule(start_date, end_date) {
 
       });
    } else {
-
       console.log(start_date.getMonth())
       const setData = {
          'group_id': selectedg,
@@ -555,16 +547,11 @@ function set_schedule(start_date, end_date) {
             local_set_schedule(eventDate, end_Date, element['title'], element['user_id'], element['name'])
          })
 
-      });
-
-
+      })
    }
 }
 
 function local_set_schedule(start_date, end_date, title, color, name) {
-
-
-
    let mstartTime = timeFormat(start_date)
    let firstchild = document.getElementById('cal').firstElementChild;
    console.log(`${('00' + (start_date.getMonth() )).slice(-2)}`)
@@ -590,7 +577,6 @@ function local_set_schedule(start_date, end_date, title, color, name) {
    let timeCount = end_date.getTime() - start_date.getTime()
    console.log(timeCount)
 
-
    if (calmode == 0) {
       if (timeCount > 86400000) {
          while (timeCount > 86400000) {
@@ -608,6 +594,7 @@ function local_set_schedule(start_date, end_date, title, color, name) {
       }
    } else {
       //GROP
+      
       const span_color = document.getElementById(`user-${color}`).children[0]
       if (timeCount > 86400000) {
          while (timeCount > 86400000) {
@@ -621,10 +608,6 @@ function local_set_schedule(start_date, end_date, title, color, name) {
          document.getElementById(formatDate(end_date)).innerHTML = document.getElementById(formatDate(end_date)).innerHTML + `<div class="schedule-text"><span style="color:${span_color.style.color};;margin-right: 0.5em">●</span>${mstartTime}〜${timeFormat(end_date)}  ${title}-${name}</div>`
       } else {
          addevent.innerHTML = addevent.innerHTML + `<div class="schedule-text"><span style="color:${span_color.style.color};margin-right: 0.5em">●</span>${timeFormat(start_date)}〜${timeFormat(end_date)}  ${title}-${name}</div>`
-
       }
-
    }
-
-
 }

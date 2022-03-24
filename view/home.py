@@ -8,20 +8,21 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route('/')
 def home_index():
-    return render_template('home.html')
+    return render_template('home.html',user_id=session['user'])
 
 
 @home.route('/get_group', methods=["GET"])
 def get_group():
     if "user" not in session:
         return redirect("/")
-    user_id =  1 #session['user']# userID
+    user_id = session['user']# userID
     join_groups_table = get_join_groups(user_id)
     now_group = join_groups_table[0][2]
     groups = {'items': []}
     group_info = {
         'group_id': join_groups_table[0][2],
         'group_name': join_groups_table[0][3],
+        'group_string':join_groups_table[0][4],
         'user_list': []
     }
     if join_groups_table is None:
@@ -36,6 +37,7 @@ def get_group():
             group_info = {
                 'group_id': join_tpl[2],
                 'group_name': join_tpl[3],
+                'group_string': join_tpl[4],
                 'user_list': []
             }
             group_info['user_list'].append(
@@ -116,7 +118,7 @@ def get_joblist():
     
     json_jobs = {'items': []}
     
-    if job_tpl is None:
+    if job_list is None:
         return jsonify({"values":"No DATA"})
     
     for job_tpl in job_list:
@@ -143,9 +145,8 @@ def get_group_schedule():
     
     schedules = get_group_schedules(session['user'],group_id,start_y,start_m,end_y,end_m)
     json_schedule = {'items': []}
-    
-    if schedule_tpl is None:
-        return jsonify({"values":"No DATA"})
+    if schedules is None:
+        return
     
     for schedule_tpl in schedules:
         if schedule_tpl[0] is None:
