@@ -59,3 +59,23 @@ def update_job(user_id, job_id, job_name, color):
     conn.close()
 
     return True
+
+
+# バイト先情報を削除
+def delete_job(user_id, job_id):
+    conn = connect_db.get_update_connection()
+    cur = conn.cursor()
+
+    sql = "UPDATE job_infos SET delete_flg = 1 WHERE user_id = %s and job_id = %s"
+
+    try:
+        cur.execute(sql, (user_id, job_id))
+    except Exception as e:
+        print(e)
+        return False
+
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    return True
