@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,7 +13,8 @@
     <div class="h1-box">
         <h1 class="h1_shadow">ジョビ<span class="calendar">カレンダー</span></h1>
     </div>
-    <form action="{{url_for('login.top_page')}}" method="post">
+    <p id="error">{% if error %}{{error}}{% endif %}</p>
+    <form action="{{url_for('login.home_post_page')}}" method="post">
         <ul>
             <li>
                 <div class="input_text">

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 from view.create_account import create_account
 from view.login import login
 from view.group import group
@@ -17,15 +17,16 @@ app.secret_key = 'hogehoge'
 
 @app.route("/")
 def index():
+    error = request.args.get('error')
     session.pop('account', None)
-    return render_template('index.html')
+    return render_template('index.html', error=error)
 
 
 # アカウント作成ページ
 app.register_blueprint(create_account)
 # ログインページ
 app.register_blueprint(login)
-# バイト先情報登録画面
+# バイト先情報登録ページ
 app.register_blueprint(add_job)
 # グループページ
 app.register_blueprint(group)

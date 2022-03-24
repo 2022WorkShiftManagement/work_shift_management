@@ -18,7 +18,7 @@ def edit_job_page():
 
         # 取得できなかった時
         if not job_list:
-            redirect("/home")
+            return redirect("/home")
 
         # バイトの色を取得
         for job in job_list:
@@ -82,5 +82,30 @@ def update_job():
             url_for(
                 'edit_job.edit_job_page',
                 error='登録に失敗しました。'
+            )
+        )
+
+
+# バイト先情報削除
+@edit_job.route("/delete_job")
+def delete_job():
+    if "user" not in session:
+        return redirect("/")
+    else:
+        job_id = request.args.get('job_id')
+        print(job_id)
+        delete_result = edit_job_db.delete_job(
+            session['user'],
+            job_id
+        )
+
+        # データベースから削除できたか
+        if delete_result:
+            return redirect(url_for('edit_job.edit_job_page', error="バイト先を削除しました。"))
+
+        return redirect(
+            url_for(
+                'edit_job.edit_job_page',
+                error='削除に失敗しました。。'
             )
         )

@@ -117,3 +117,10 @@ form > div {
     text-align: center;
     padding-top: 10px;
 }
+
+#delete_job {
+    background-color: #FFFFFF;
+    color: #FF9100;
+    text-decoration: underline;
+    cursor: pointer;
+}

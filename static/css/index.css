@@ -152,3 +152,9 @@ a:hover {
 input:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s !important;
 }
+
+#error {
+    color: #FF0000;
+    text-align: center;
+    padding-top: 10px;
+}
