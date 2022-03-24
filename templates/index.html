@@ -10,7 +10,9 @@
 </head>
 <body>
 <div>
-    <h1>ジョビカレンダー</h1>
+    <div class="h1-box">
+        <h1 class="h1_shadow">ジョビ<span class="calendar">カレンダー</span></h1>
+    </div>
     <p id="error">{% if error %}{{error}}{% endif %}</p>
     <form action="{{url_for('login.home_post_page')}}" method="post">
         <ul>
