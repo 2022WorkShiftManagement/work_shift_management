@@ -7,6 +7,7 @@ from view.login import login
 from view.group import group
 from view.job import job
 from view.edit_account import edit_account
+from view.home import home
 
 
 app = Flask(__name__)
@@ -34,6 +35,9 @@ app.register_blueprint(job)
 app.register_blueprint(group)
 # アカウント編集ページ
 app.register_blueprint(edit_account)
+
+app.register_blueprint(home)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

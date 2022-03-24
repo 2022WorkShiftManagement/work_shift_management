@@ -1,0 +1,512 @@
+body {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li{
+  list-style: none;
+}
+
+.dradio {
+  display: none;
+}
+
+
+.radio_ci {
+
+  top: 1.2em;
+  position: relative;
+  /* ボックスの位置を指定する */
+  display: inline;
+  padding: 0 0 0 0px;
+  width: 30%;
+
+  /* ボックス内側の余白を指定する */
+}
+
+.radio_ci:after {
+  position: absolute;
+  /* ボックスの位置を指定する */
+  content: "";
+  /* ボックスのコンテンツ */
+  display: block;
+  /* ブロックレベル要素化する */
+  top: 50%;
+  /* 上部から配置の基準位置を決める */
+  left: 0.3em;
+  /* 左から配置の基準位置を決める */
+  width: 0.6em;
+  /* ボックスの横幅を指定する */
+  height: 0.6em;
+  /* ボックスの高さを指定する */
+  border: 1.6px solid #ccc;
+  /* ボックスの境界線を実線で指定する */
+  border-radius: 50%;
+  /* ボックスの角丸を指定する */
+}
+
+.radio_ci::before {
+  position: absolute;
+  /* ボックスの位置を指定する */
+  content: "";
+  /* ボックスのコンテンツ */
+  display: block;
+  /* ブロックレベル要素化する */
+  margin-top: 0.19em;
+  top: 54%;
+  /* 上部から配置の基準位置を決める */
+  left: 0.49em;
+  /* 左から配置の基準位置を決める */
+  width: 0.4em;
+  /* ボックスの横幅を指定する */
+  height: 0.4em;
+  /* ボックスの高さを指定する */
+  background: #C5E1EC;
+  border-radius: 50%;
+  /* ボックスの角丸を指定する */
+  opacity: 0;
+}
+
+.dradio:checked+.radio_ci:before {
+  opacity: 1;
+}
+
+
+.header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+  padding: 0.5em;
+  z-index: 100;
+  background: #C5E1EC;
+}
+
+.logo {
+  text-align: center;
+  font-size: 2em;
+
+}
+
+/*------------------------------
+ 
+   ここから下がハンバーガーメニュー
+   に関するCSS
+ 
+ ------------------------------*/
+
+/* チェックボックスは非表示に */
+.drawer-hidden {
+  display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer-open {
+  display: flex;
+  margin-right: 2em;
+  height: 15%;
+  width: 1%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  /* 重なり順を一番上に */
+  cursor: pointer;
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer-open span,
+.drawer-open span:before,
+.drawer-open span:after {
+  content: '';
+  display: block;
+  height: 0.2em;
+  width: 2.5em;
+  border-radius: 3px;
+  background: #fff;
+  transition: 0.5s;
+  position: absolute;
+}
+
+/* 三本線のうち一番上の棒の位置調整 */
+.drawer-open span:before {
+  bottom: 1em;
+}
+
+/* 三本線のうち一番下の棒の位置調整 */
+.drawer-open span:after {
+  top: 1em;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer-check:checked~.drawer-open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer-check:checked~.drawer-open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer-check:checked~.drawer-open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* メニューのデザイン*/
+.drawer-content {
+  width: 80%;
+  height: 100%;
+  position: fixed;
+
+  top: 0;
+  left: 100%;
+  /* メニューを画面の外に飛ばす */
+  z-index: 98;
+  background: #333333E0;
+  /* 縦方向のスクロールバーを表示 */
+  transition: .5s;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer-check:checked~.drawer-content {
+  left: 40%;
+  /* メニューを画面に入れる */
+}
+
+.drawer-list {
+  display: inline;
+  padding: 0 0 0 0;
+  max-height: 10px;
+}
+
+.group_title {
+  margin-left: 3%;
+  font-size: 1.2em;
+  color: #fff;
+
+}
+
+.drawer-item {
+  overflow: auto;
+
+  max-height: 55%;
+  height: 55%;
+  border-top: solid #FFFFFF90 0.1em;
+  border-bottom: solid #FFFFFF90 0.1em;
+}
+
+.cp_actab {
+  position: relative;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 0;
+  color: #ffffff;
+  border-top: solid #FFFFFF90 0.1em;
+}
+
+.cp_actab input[type="checkbox"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.group_name {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 3;
+  position: relative;
+  display: block;
+  padding: 0 0 0 0;
+  cursor: pointer;
+  margin: 0 0 0 1.8em;
+
+}
+
+.cp_actab .cp_actab-content {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 0.35s;
+  transition: max-height 0.35s;
+
+
+}
+
+.cp_actab .cp_actab-content p {
+  margin: 1em;
+}
+
+/* :checked */
+.cp_actab input:checked~.cp_actab-content {
+  max-height: 20em;
+}
+
+/* Icon */
+.group_name::after {
+  line-height: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  margin-right: 5%;
+  width: 3em;
+  height: 3em;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.cp_actab input[type=checkbox]+label::after {
+  content: '▽';
+}
+
+.cp_actab input[type=checkbox]:checked+label::after {
+  transform: rotate(300deg);
+}
+
+.footer-menu {
+  display: flex;
+  height: 37%;
+  margin-top: 7%;
+  margin-bottom: 2%;
+}
+
+.footer-menu p a {
+  color: #FFF;
+  margin-left: 1em;
+  font-size: 1.2em;
+
+}
+
+.calendar-area{
+  display: flex;
+}
+
+.sticky-head {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+.sticky-li {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 4em;
+  z-index: 80;
+  padding: 0.2em;
+ 
+}
+
+.nav-cal{
+  width: 100%;
+
+}
+.days-area{
+  width: 100%;
+  padding-top: 0.2em;
+  padding-bottom: 2em;
+  max-height: 10000000em;
+
+  border-top: solid #cccccc92 0.1em;
+}
+
+.ul-cal{
+  padding-left: 0;
+}
+
+.date-txt{
+  display: inline;
+  padding-left: 1em;
+  padding-top: 0.3em;
+  font-size: 1em;
+}
+
+.day{
+  display: inline;
+  padding-left: 1em;
+  padding-top: 0.3em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+.sun{
+  color: coral;
+}
+
+.sat{
+  color: cornflowerblue;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 95;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  width: 75%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalClose {
+  font-size: 2rem;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.entry_button {
+  display: inline-block;
+  text-decoration: none;
+  -webkit-appearance: none;
+  color: #FFFFFF;
+  background-color: #303030;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 100vh;
+  width: 30%;
+  border:none;
+}
+
+.modal-body {
+  
+  padding: 10px 20px;
+
+}
+
+
+.cp_ipselect {
+	overflow: hidden;
+	width: 90%;
+	margin: 1em auto;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl04 {
+	position: relative;
+	border-radius: 2px;
+	border: 2px solid #727272;
+  border-radius: 50px;
+	background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.8em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #727272;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+	padding: 8px 38px 8px 8px;
+	color: #727272;
+}
+
+.center_block{
+ text-align: center;
+}
+
+.input-area{
+  padding-left:3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 87%;
+  font-size: 0.9em;
+  height: 2em;
+  border-radius: 2px;
+	border: 2px solid #727272;
+  border-radius: 50px;
+}
+
+.schedule-text{
+  margin-left: 1em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  font-size: 0.95em;
+}
+
+.parent{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.herf-input-area{
+  
+}
+
+.date{
+  width: 45%;
+  height: 1%;
+  font-size: 0.9em;
+}
+
+.time{
+  width: 30%;
+  height: 1%;
+  font-size: 0.9em;
+}
+
+.p-radio{
+  text-align: center;
+}
