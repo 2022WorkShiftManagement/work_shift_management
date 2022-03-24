@@ -117,3 +117,9 @@ form > div {
 a {
     color: #FFFFFF;
 }
+
+#error {
+    color: #FF0000;
+    text-align: center;
+    padding-top: 10px;
+}
