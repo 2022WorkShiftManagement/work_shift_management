@@ -131,7 +131,7 @@ function groupChange() {
       const ul = document.getElementById('cal');
       ul.innerHTML = ''
       //親からgroup_stringを取得
-      document.getElementById('grouplink').href = "/detail/" + document.getElementById(selectedg).parentNode.id
+      document.getElementById('grouplink').href = "/group/detail/" + document.getElementById(selectedg).parentNode.id
       create_calendar(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1))
       calmode = 1
       set_schedule(new Date(nowDate.getFullYear(), nowDate.getMonth() - 2, 1), new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 31))

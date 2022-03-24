@@ -7,7 +7,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="../static/css/home.css">
    <script type="text/javascript">
-      const current_id = "{{user_id[0]}}"
+      const current_id = "{{user_id}}"
       </script>
    <script src="../static/js/home.js" type="text/javascript"></script>
    <title>Document</title>
@@ -25,7 +25,7 @@
             <ul class="drawer-list">
                <li class="drawer-item" id="group_list">
                   <div class="cp_actab">
-                     <input type="radio" name="group" class="group_radio dradio" id="-1">
+                     <input type="radio" name="group" class="group_radio dradio" id="-1" checked>
                      <label for="-1" class="radio_ci"></label>
                      <input id="tab-one" type="checkbox" name="tabs">
                      <label for="tab-one" class="group_name">自分</label>
@@ -35,11 +35,11 @@
                <!-- TODO:リンクを貼る -->
                <li class="footer-menu">
                   <div>
-                     <p><a href="/newGroup">グループ新規作成</a></p>
+                     <p><a href="/group/newGroup">グループ新規作成</a></p>
                      <p><a href="/detail/" id="grouplink">グループ編集</a></p>
-                     <p><a href="#">バイト先新規登録</a></p>
-                     <p><a href="#">バイト先編集</a></p>
-                     <p><a href="#">ユーザー情報変更</a></p>
+                     <p><a href="/job/add_job">バイト先新規登録</a></p>
+                     <p><a href="/job/edit_job">バイト先編集</a></p>
+                     <p><a href="/edit_account/edit_account">ユーザー情報変更</a></p>
                   </div>
                </li>
             </ul>

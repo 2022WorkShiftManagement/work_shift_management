@@ -442,7 +442,7 @@ li{
 .cp_ipselect.cp_sl04 {
 	position: relative;
 	border-radius: 2px;
-	border: 2px solid #c7c7c7;
+	border: 2px solid #727272;
   border-radius: 50px;
 	background: #ffffff;
 }
@@ -456,12 +456,12 @@ li{
 	content: '';
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
-	border-top: 6px solid #c7c7c7;
+	border-top: 6px solid #727272;
 	pointer-events: none;
 }
 .cp_ipselect.cp_sl04 select {
 	padding: 8px 38px 8px 8px;
-	color: #c7c7c7;
+	color: #727272;
 }
 
 .center_block{
@@ -469,12 +469,14 @@ li{
 }
 
 .input-area{
+  padding-left:3%;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 87%;
+  font-size: 0.9em;
   height: 2em;
   border-radius: 2px;
-	border: 2px solid #c7c7c7;
+	border: 2px solid #727272;
   border-radius: 50px;
 }
 
