@@ -32,7 +32,7 @@ def select_group(gid):
     sql = '''SELECT jg.user_id, user_name, jg.group_id, ug.user_id as group_reader, group_name, group_string FROM joining_groups as jg
             INNER JOIN users as us ON us.user_id = jg.user_id
             INNER JOIN user_groups as ug ON ug.group_id = jg.group_id
-            WHERE us.delete_flg=0 AND ug.group_string=%s'''
+            WHERE us.delete_flg = 0 AND ug.group_string = %s'''
     try:
         cur.execute(sql, (gid,))
         group_details = cur.fetchall()
@@ -94,10 +94,18 @@ def join_group(uid, gid):
     sql = '''INSERT INTO joining_groups
             VALUES(null, %s, (
                 SELECT group_id FROM user_groups
-                WHERE group_string = %s
-            ))'''
+                WHERE group_string = %s)
+                )
+                WHERE NOT EXISTS (
+                    SELECT user_id, group_id FROM joining_groups
+                    WHERE user_id=%s 
+                    AND group_id = (
+                        SELECT group_id FROM user_groups
+                        WHERE group_string = %s
+                    )
+                )'''
     try:
-        cur.execute(sql, (uid, gid,))
+        cur.execute(sql, (uid, gid, uid, gid,))
         conn.commit()
         cur.close()
         conn.close()

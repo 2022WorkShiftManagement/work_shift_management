@@ -57,7 +57,7 @@ def group_entry(gid):
     entry_ok = join_group(session['user'], gid)
     if entry_ok:
         return redirect(url_for('group.group_detail', gid=gid))
-    return render_template('group_entry.html', alert_message='entry_error')
+    return render_template('group_entry.html', gid=gid, alert_message='entry_error')
 
 
 @group.route('/remove_member/<string:gid>/<int:uid>')

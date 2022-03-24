@@ -21,7 +21,8 @@
         <div>
             {% if alert_message %}
                 {% if alert_message == 'entry_error' %}
-                    <h3>グループが存在しません</h3>
+                    <h3>グループ参加出来ませんでした</h3>
+                    <a href={{ url_for('group.group_detail', gid=gid) }}>戻る</a>
                 {% endif %}
             {% else %}
                 <h2 class="group_name">{{ details[0][4] }}</h2>
