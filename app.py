@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 from view.create_account import create_account
 from view.login import login
 from view.group import group
@@ -17,8 +17,9 @@ app.secret_key = 'hogehoge'
 
 @app.route("/")
 def index():
+    error = request.args.get('error')
     session.pop('account', None)
-    return render_template('index.html')
+    return render_template('index.html', error=error)
 
 
 # アカウント作成ページ
