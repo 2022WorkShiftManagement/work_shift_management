@@ -26,7 +26,7 @@ def index():
 app.register_blueprint(create_account)
 # ログインページ
 app.register_blueprint(login)
-# バイト先情報登録画面
+# バイト先情報登録ページ
 app.register_blueprint(add_job)
 # グループページ
 app.register_blueprint(group)
