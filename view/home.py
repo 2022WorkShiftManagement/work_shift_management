@@ -8,6 +8,8 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route('/')
 def home_index():
+    if "user" not in session:
+        return redirect("/")
     return render_template('home.html',user_id=session['user'][0])
 
 
