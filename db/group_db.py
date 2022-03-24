@@ -91,21 +91,13 @@ def select_member_count(gid):
 def join_group(uid, gid):
     conn = get_update_connection()
     cur = conn.cursor()
-    sql = '''INSERT INTO joining_groups
-            VALUES(null, %s, (
+    sql = '''INSERT IGNORE INTO joining_groups
+            VALUES(%s, (
                 SELECT group_id FROM user_groups
                 WHERE group_string = %s)
-                )
-                WHERE NOT EXISTS (
-                    SELECT user_id, group_id FROM joining_groups
-                    WHERE user_id=%s 
-                    AND group_id = (
-                        SELECT group_id FROM user_groups
-                        WHERE group_string = %s
-                    )
                 )'''
     try:
-        cur.execute(sql, (uid, gid, uid, gid,))
+        cur.execute(sql, (uid, gid,))
         conn.commit()
         cur.close()
         conn.close()
