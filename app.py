@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 import os
 from datetime import timedelta
 
@@ -20,15 +20,16 @@ app.permanent_session_lifetime = timedelta(minutes=15)
 
 @app.route("/")
 def index():
+    error = request.args.get('error')
     session.pop('account', None)
-    return render_template('index.html')
+    return render_template('index.html', error=error)
 
 
 # アカウント作成ページ
 app.register_blueprint(create_account)
 # ログインページ
 app.register_blueprint(login)
-# バイト先情報登録画面
+# バイト先情報登録ページ
 app.register_blueprint(add_job)
 # グループページ
 app.register_blueprint(group)
