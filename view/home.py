@@ -19,6 +19,10 @@ def get_group():
         return redirect("/")
     user_id = session['user']# userID
     join_groups_table = get_join_groups(user_id)
+    print(join_groups_table)
+    if join_groups_table ==():
+        return
+    
     now_group = join_groups_table[0][2]
     groups = {'items': []}
     group_info = {

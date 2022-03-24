@@ -46,8 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       setgroupData(data)
       //savedUserData = data;
    }).catch((e) => {
-      let link = location.href;
-      location.href = link.replace("/home/" + location.hash, "/");
+  
    });
 
    color_pic.addEventListener('change',()=>{

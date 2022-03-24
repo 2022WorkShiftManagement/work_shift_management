@@ -24,13 +24,13 @@ def home_post_page():
 
     session['user'] = user_id
 
-    return render_template('home.html')
+    return redirect('/home')
 
 
 # sessionが残っていれば直でhome.htmlに遷移
 @login.route("/home_get", methods=["GET"])
 def home_get_page():
     if 'user' in session:
-        return render_template('home.html')
+        return redirect('/home')
 
     return redirect('/home_post')
