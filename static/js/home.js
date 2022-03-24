@@ -279,6 +279,8 @@ function setgroupData(data) {
 function setjobData(data) {
    const job_list = document.getElementById('job')
    const job_colorlist = []
+
+   job_list.innerHTML += '<option value="-1" hidden>なし</option>'
    for (let i = 0; i < data.items.length; i++) {
       const job_name = document.createElement('option')
       job_name.value = data.items[i]['job_id']

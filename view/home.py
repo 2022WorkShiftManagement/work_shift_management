@@ -8,7 +8,7 @@ home = Blueprint('home', __name__, url_prefix='/home')
 
 @home.route('/')
 def home_index():
-    return render_template('home.html',user_id=session['user'])
+    return render_template('home.html',user_id=session['user'][0])
 
 
 @home.route('/get_group', methods=["GET"])
