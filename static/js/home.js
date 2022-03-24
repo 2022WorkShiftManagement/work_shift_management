@@ -442,7 +442,7 @@ function onsend() {
       'title': title.value,
       'color': color.value,
       'job_id': job.value,
-      'is_private': !radio.value
+      'is_private': !radio.checked
    }
    console.log(color.value)
 

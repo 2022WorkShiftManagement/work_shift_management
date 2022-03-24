@@ -33,7 +33,7 @@ def set_schedule(user_id,title, start_day, end_day, color, job_id, is_private):
     cur = conn.cursor()
     
     flg =0
-    if is_private:
+    if is_private == 'true':
        flg =1 
         
     
