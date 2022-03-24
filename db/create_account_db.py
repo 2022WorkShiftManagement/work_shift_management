@@ -3,7 +3,8 @@ import hashlib
 import random
 import string
 import os
-from function import user_function
+from function import user_function as uf
+from db import connect_db
 
 
 # ユーザ情報取得処理
@@ -11,9 +12,9 @@ def insert_account(account):
     salt = "".join(random.choices(string.ascii_letters, k=32))
 
     # ハッシュ化の関数
-    hashed_pw = user_function.hash(salt, account['pw'])
+    hashed_pw = uf.hash(salt, account['pw'])
 
-    conn = get_update_connection()
+    conn = connect_db.get_update_connection()
     cur = conn.cursor()
 
     sql = "INSERT INTO users(mail, password, salt, user_name) VALUES(%s, %s, %s, %s)"
@@ -29,20 +30,3 @@ def insert_account(account):
     conn.close()
 
     return True
-
-
-# DBとのコネクションを取得
-def get_select_connection():
-    # 環境変数の取得
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(user='select_user', passwd=pw, host='localhost', db='work_shift_management',
-                           charset="utf8")
-
-
-def get_update_connection():
-    # 環境変数の取得
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(user='update_user', passwd=pw, host='localhost', db='work_shift_management',
-                           charset="utf8")

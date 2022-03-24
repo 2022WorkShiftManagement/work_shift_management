@@ -1,7 +1,8 @@
 import MySQLdb
 import hashlib
 import os
-from function import user_function
+from function import user_function as uf
+from db import connect_db
 
 
 def login(mail, pw):
@@ -11,7 +12,7 @@ def login(mail, pw):
         return None
 
     # ハッシュ化の関数
-    hashed_pw = user_function.hash(salt, pw)
+    hashed_pw = uf.hash(salt, pw)
 
     user_id = search_account(mail, hashed_pw)
 
@@ -19,7 +20,7 @@ def login(mail, pw):
 
 
 def search_salt(mail):
-    conn = get_select_connection()
+    conn = connect_db.get_select_connection()
     cur = conn.cursor()
 
     sql = 'select salt from users where mail = %s'
@@ -42,7 +43,7 @@ def search_salt(mail):
 
 
 def search_account(mail, pw):
-    conn = get_select_connection()
+    conn = connect_db.get_select_connection()
     cur = conn.cursor()
 
     sql = 'select user_id from users where mail = %s and password = %s'
@@ -59,22 +60,3 @@ def search_account(mail, pw):
     conn.close()
 
     return user_id
-
-
-# DBとのコネクションを取得
-def get_select_connection():
-    # 環境変数の取得
-    host = os.environ['DATABASE_HOST']
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(user='select_user', passwd=pw, host=host, db='work_shift_management',
-                           charset="utf8")
-
-
-def get_update_connection():
-    # 環境変数の取得
-    host = os.environ['DATABASE_HOST']
-    pw = os.environ['DATABASE_PASS']
-
-    return MySQLdb.connect(user='update_user', passwd=pw, host=host, db='work_shift_management',
-                           charset="utf8")
