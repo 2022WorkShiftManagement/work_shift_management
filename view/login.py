@@ -24,7 +24,7 @@ def home_post_page():
 
     session['user'] = user_id
 
-    return render_template('home.html')
+    return redirect("/home")
 
 
 # sessionが残っていれば直でhome.htmlに遷移
@@ -34,3 +34,9 @@ def home_get_page():
         return render_template('home.html')
 
     return redirect('/home_post')
+
+
+@login.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
