@@ -148,3 +148,7 @@ a {
 a:hover {
     color: #ffb052;
 }
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px #C5E1EC inset;
+}
